@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">SAE32_DUPRAZ-ROLLIN_VALLET</string>
-    <string name="TitreMain">Placeholder</string>
+    <string name="app_name" translatable="false">Subnet Explorer</string>
+    <string name="TitreMain" translatable="false">Placeholder</string>
+    <string name="calculateur_ip">Calculateur d\'IP</string>
+    <string name="filler" translatable="false">filler</string>
+    <string name="calculateur_vlsm">Calculateur VLSM</string>
+    <string name="analyseur_wi_fi">Analyseur WI-FI</string>
+    <string name="langage">Langage : FR</string>
+    <string name="informations" translatable="false">Informations</string>
 </resources>

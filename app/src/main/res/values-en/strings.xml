@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="calculateur_ip">IP Calculator</string>
+    <string name="calculateur_vlsm">VLSM Calculator</string>
+    <string name="analyseur_wi_fi">Wi-FI Analyser</string>
+    <string name="langage">Langage : EN</string>
+</resources>
