@@ -16,4 +16,5 @@
     <string name="plage">Plage :</string>
     <string name="nombre_d_adresses">Nombre d\'adresses :</string>
     <string name="ParpaingInformations">Cette application est un projet d\'étude en binôme, réalisé lors de notre deuxième année de BUT Réseaux et Télécoms. \n\n Notre application vous permets d\'obtenir tous les renseignements utiles sur une adresse IP ( Adresse de diffusion, masque et adresse réseau, plage d\'adresse et nombre d\'adresse disponible). L\'application vous permet aussi de trouver le nombre de sous-réseaux possibles pour un bloc d’adresses réseau donné. La dernière proposition est un analyseur de wifi. \n\nPour informations, problèmes ou autres, n\'hésitez pas à nous contacter :\n maxime.vallet1@etu.univ-lorraine.fr \n mailto:zian.dupraz-rollin8@etu.univ-lorraine.fr</string>
+    <string name="taille">taille (SR1/SR2/.../SRn)</string>
 </resources>

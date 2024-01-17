@@ -4,7 +4,163 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".VLSM">
+
+    <ImageButton
+        android:id="@+id/VLSMBannerButtonHome"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:src="@drawable/main_button_home"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0"
+        android:onClick=""
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="OnClick" />
+
+    <TextView
+        android:id="@+id/VLSMBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme"
+        android:text="VLSM"
+        android:textAlignment="center"
+        android:textSize="24.5dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="1"
+        android:layout_marginLeft="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/VLSMTextIP"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/adresse_ip"
+        android:textSize="18dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/VLSMButtonIP"/>
+    <EditText
+        android:id="@+id/VLSMBoxIP"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        app:layout_constraintVertical_bias="0"
+        android:text=""
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintTop_toTopOf="@id/VLSMTextIP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/VLSMButtonIP" />
+
+
+    <TextView
+        android:id="@+id/VLSMTextMask"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/masque_suffixe"
+        android:textSize="18dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="@id/VLSMTextIP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/VLSMButtonIP"/>
+
+
+    <TextView
+        android:id="@+id/VLSMTextSize"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/taille"
+        android:textSize="18dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="160dp"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="@id/VLSMTextIP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/VLSMButtonIP"/>
+    <EditText
+        android:id="@+id/VLSMBoxMask"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        app:layout_constraintVertical_bias="0"
+        android:text=""
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintTop_toTopOf="@id/VLSMTextMask"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/VLSMButtonIP" />
+    <EditText
+        android:id="@+id/VLSMBoxSize"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        app:layout_constraintVertical_bias="0"
+        android:text=""
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintTop_toTopOf="@id/VLSMTextSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/VLSMButtonIP" />
+
+    <Button
+        android:id="@+id/VLSMButtonIP"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/theme"
+        android:text="@string/envoi"
+        android:textSize="10dp"
+        android:textColor="@color/white"
+        android:onClick=""
+        android:layout_marginLeft="230dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="@id/VLSMTextSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/VLSMBoxIP"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="OnClick" />
+
+    <ScrollView
+        android:layout_width="330dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="@id/VLSMBoxSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:id="@+id/VLSMTextAnswer"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18dp"
+            android:textColor="@color/black" />
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

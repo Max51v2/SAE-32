@@ -11,4 +11,5 @@
     <string name="adresse_de_diffusion">Broadcast address :</string>
     <string name="plage">Range :</string>
     <string name="nombre_d_adresses">Number of address :</string>
+    <string name="taille">Size (SR1/SR2/.../SRn)</string>
 </resources>

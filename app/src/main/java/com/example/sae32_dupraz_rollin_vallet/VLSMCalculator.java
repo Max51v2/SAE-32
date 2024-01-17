@@ -10,6 +10,7 @@ public class VLSMCalculator extends IPCalculator {
     private String SubnetList;
     private String address;
     private String mask;
+    private String result;
 
     private ArrayList<Integer> ArraySubnetList;
     private ArrayList<Integer> ArrayMaskList;
@@ -105,12 +106,19 @@ public class VLSMCalculator extends IPCalculator {
         }
         this.address = addrBack;
 
+        String result = "";
         for(int i=0; i<ArrayNetworkList.size();i++){
-            System.out.println("Sous-réseau "+(i+1)+" :");
-            System.out.println("Adresse Réseau : "+ArrayNetworkList.get(i)+"/"+ArrayMaskList.get(i));
-            System.out.println("Adresse Broadcast : "+BroadcastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))));
-            System.out.println("Première adresse : "+FirstAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))));
-            System.out.println("Dernière adresse : "+LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))));
+            result += "Sous-réseau : "+(i+1)+"\n";
+            result += "Adresse Réseau : "+ArrayNetworkList.get(i)+"/"+ArrayMaskList.get(i)+"\n";
+            result += "Adresse Broadcast : "+BroadcastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i)))+"\n";
+            result += "Première adresse : "+FirstAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i)))+"\n";
+            result += "Dernière adresse : "+LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i)))+"\n";
         }
+        this.result = result;
+    }
+
+    //renvoi le résultat
+    public String getResult(){
+        return this.result;
     }
 }
