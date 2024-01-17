@@ -43,7 +43,7 @@ public class IP extends AppCompatActivity {
             public void onClick(View v) {
                 //Récupération du champ IP
                 String address = String.valueOf(IPBoxIP.getText());
-                String prefix = String.valueOf(IPBoxMask.getText());
+                String mask = String.valueOf(IPBoxMask.getText());
                 IPBoxIP.setText("");
                 IPBoxMask.setText("");
                 IPBoxIP.requestFocus();
@@ -52,7 +52,7 @@ public class IP extends AppCompatActivity {
                 //Envoi des valeurs dans le layout
                 IPCalculator ip1;
                 try {
-                    ip1 = new IPCalculator(address, prefix);
+                    ip1 = new IPCalculator(address, mask);
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw new RuntimeException(e);

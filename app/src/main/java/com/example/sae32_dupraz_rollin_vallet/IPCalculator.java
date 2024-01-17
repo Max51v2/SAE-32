@@ -4,24 +4,24 @@ import android.util.Log;
 
 public class IPCalculator {
     private String address;
-    private String prefix;
+    private String mask;
     private String addressBin;
-    public IPCalculator(String address, String prefix){
+    public IPCalculator(String address, String mask){
         this.address = address;
-        this.prefix = prefix;
-        this.prefix = GetPrefix(prefix);
+        this.mask = mask;
+        this.mask = Getmask(mask);
     }
 
-    //Remet les prefixes /X et X.X.X.X sous la forme X
-    private String GetPrefix(String prefix){
-        if(prefix.contains("/")){
-            prefix = prefix.substring(1,prefix.length());
+    //Remet les maskes /X et X.X.X.X sous la forme X
+    public String Getmask(String mask){
+        if(mask.contains("/")){
+            mask = mask.substring(1,mask.length());
         }
-        if(prefix.contains(".")){
-            prefix = AddressToBaseTwo(prefix);
-            prefix = String.valueOf(prefix.indexOf("0"));
+        if(mask.contains(".")){
+            mask = AddressToBaseTwo(mask);
+            mask = String.valueOf(mask.indexOf("0"));
         }
-        return prefix;
+        return mask;
     }
 
     //Transforme une adresse en notation décimale pointée en 32 bits
@@ -74,8 +74,8 @@ public class IPCalculator {
 
     public String NetworkAddress(){
         addressBin = AddressToBaseTwo(this.address);
-        addressBin = addressBin.substring(0,(Integer.valueOf(this.prefix)));
-        for(int i=Integer.valueOf(this.prefix);i<32;i++){
+        addressBin = addressBin.substring(0,(Integer.valueOf(this.mask)));
+        for(int i=Integer.valueOf(this.mask);i<32;i++){
             addressBin += "0";
         }
 
@@ -85,8 +85,8 @@ public class IPCalculator {
     public String BroadcastAddress(){
         addressBin = AddressToBaseTwo(this.address);
 
-        addressBin = addressBin.substring(0,(Integer.valueOf(this.prefix)));
-        for(int i=Integer.valueOf(this.prefix);i<32;i++){
+        addressBin = addressBin.substring(0,(Integer.valueOf(this.mask)));
+        for(int i=Integer.valueOf(this.mask);i<32;i++){
             addressBin += "1";
         }
 
@@ -96,8 +96,8 @@ public class IPCalculator {
     public String FirstAddress(){
         addressBin = AddressToBaseTwo(this.address);
 
-        addressBin = addressBin.substring(0,(Integer.valueOf(this.prefix)));
-        for(int i=Integer.valueOf(this.prefix);i<31;i++){
+        addressBin = addressBin.substring(0,(Integer.valueOf(this.mask)));
+        for(int i=Integer.valueOf(this.mask);i<31;i++){
             addressBin += "0";
         }
 
@@ -109,8 +109,8 @@ public class IPCalculator {
     public String LastAddress(){
         addressBin = AddressToBaseTwo(this.address);
 
-        addressBin = addressBin.substring(0,(Integer.valueOf(this.prefix)));
-        for(int i=Integer.valueOf(this.prefix);i<31;i++){
+        addressBin = addressBin.substring(0,(Integer.valueOf(this.mask)));
+        for(int i=Integer.valueOf(this.mask);i<31;i++){
             addressBin += "1";
         }
 
@@ -120,7 +120,7 @@ public class IPCalculator {
     }
 
     public String NumberOfAddress(){
-        return String.valueOf((int) (Math.pow(2,(32-Integer.valueOf(this.prefix)))-2));
+        return String.valueOf((int) (Math.pow(2,(32-Integer.valueOf(this.mask)))-2));
     }
 
     //Convertis 32 bits en base 10 avec une notation décimale pointée
@@ -148,5 +148,52 @@ public class IPCalculator {
             }
         }
         return String.valueOf(result);
+    }
+    //_____________________VLSM_______________________
+    public String NetworkAddressAlt(String address, String mask){
+        addressBin = AddressToBaseTwo(address);
+        addressBin = addressBin.substring(0,(Integer.valueOf(mask)));
+        for(int i=Integer.valueOf(mask);i<32;i++){
+            addressBin += "0";
+        }
+
+        return toBaseTen(addressBin);
+    }
+
+    public String BroadcastAddressAlt(String address, String mask){
+        addressBin = AddressToBaseTwo(address);
+
+        addressBin = addressBin.substring(0,(Integer.valueOf(mask)));
+        for(int i=Integer.valueOf(mask);i<32;i++){
+            addressBin += "1";
+        }
+
+        return toBaseTen(addressBin);
+    }
+
+    public String FirstAddressAlt(String address, String mask){
+        addressBin = AddressToBaseTwo(address);
+
+        addressBin = addressBin.substring(0,(Integer.valueOf(mask)));
+        for(int i=Integer.valueOf(mask);i<31;i++){
+            addressBin += "0";
+        }
+
+        addressBin += "1";
+
+        return toBaseTen(addressBin);
+    }
+
+    public String LastAddressAlt(String address, String mask){
+        addressBin = AddressToBaseTwo(address);
+
+        addressBin = addressBin.substring(0,(Integer.valueOf(mask)));
+        for(int i=Integer.valueOf(mask);i<31;i++){
+            addressBin += "1";
+        }
+
+        addressBin += "0";
+
+        return toBaseTen(addressBin);
     }
 }

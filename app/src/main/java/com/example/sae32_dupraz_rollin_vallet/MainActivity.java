@@ -61,13 +61,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //Changement d'activité (IP)
-        MainButtonIP.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, IP.class));
-            }
-        });
-
         //Changement d'activité (Informations)
         MainButtonInfo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -76,10 +69,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //Changement d'activité (IP)
+        MainButtonIP.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, IP.class));
+            }
+        });
+
+
         //Changement d'activité (VLSM)
         MainButtonVLSM.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                startActivity(new Intent(MainActivity.this, VLSM.class));
             }
         });
 
