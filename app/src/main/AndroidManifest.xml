@@ -14,6 +14,9 @@
         android:theme="@style/Theme.SAE32_DUPRAZROLLIN_VALLET"
         tools:targetApi="31">
         <activity
+            android:name=".Informations"
+            android:exported="false" />
+        <activity
             android:name=".IP"
             android:exported="false" />
         <activity

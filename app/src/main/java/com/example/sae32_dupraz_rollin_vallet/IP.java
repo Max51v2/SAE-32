@@ -50,17 +50,17 @@ public class IP extends AppCompatActivity {
                 IPBoxMask.requestFocus();
 
                 //Envoi des valeurs dans le layout
+                IPCalculator ip1;
                 try {
-                    IPCalculator ip1 = new IPCalculator(address, prefix);
-
-                    IPNetworkAddressBox.setText(ip1.NetworkAddress(address, prefix));
-                    IPBroadcastAddressBox.setText(ip1.BroadcastAddress(address, prefix));
-                    IPRangeBox.setText(ip1.FirstAddress(address, prefix) + " - " + ip1.LastAddress(address, prefix));
-                    IPAvailableAddressBox.setText(ip1.NumberOfAddress(prefix));
+                    ip1 = new IPCalculator(address, prefix);
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw new RuntimeException(e);
                 }
+                IPNetworkAddressBox.setText(ip1.NetworkAddress(address, prefix));
+                IPBroadcastAddressBox.setText(ip1.BroadcastAddress(address, prefix));
+                IPRangeBox.setText(ip1.FirstAddress(address, prefix) + " - " + ip1.LastAddress(address, prefix));
+                IPAvailableAddressBox.setText(ip1.NumberOfAddress(prefix));
             }
         });
     }

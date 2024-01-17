@@ -75,6 +75,8 @@ public class IPCalculator {
     public String NetworkAddress(String addressBin, String prefix){
         prefix = GetPrefix(prefix);
 
+        Log.d("cpt", prefix);
+        Log.d("cpt", addressBin);
         addressBin = addressBin.substring(0,(Integer.valueOf(prefix)));
         for(int i=Integer.valueOf(prefix);i<32;i++){
             addressBin += "0";
