@@ -8,7 +8,7 @@
     tools:context=".IP">
 
     <ImageButton
-        android:id="@+id/MainBannerButtonHome"
+        android:id="@+id/InformationsBannerButtonHome"
         android:layout_width="33dp"
         android:layout_height="33dp"
         android:src="@drawable/main_button_home"
@@ -22,11 +22,11 @@
         tools:ignore="OnClick" />
 
     <TextView
-        android:id="@+id/IPBanner"
+        android:id="@+id/InformationsBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/theme"
-        android:text="@string/calculateur_ip"
+        android:text="@string/informations"
         android:textAlignment="center"
         android:textSize="24.5dp"
         android:textColor="#FFFFFF"
@@ -40,26 +40,15 @@
         />
 
     <TextView
-        android:id="@+id/IPTextIP"
-        android:layout_width="402dp"
-        android:layout_height="369dp"
-        android:text="Cette application est un projet
-d'étude en binome, réalisé lors de notre deuxiémee année
-de BUT Réseaux et Télécoms. \n\nNotre application vous permets
-d'obtenir tous les renseignements utiles sur une adresse IP (
-addresse de diffusion, masque et adresse réseau, plage d'adresse
-disponible et nombre d'adresse disponible).
-L'applications vous permets aussi de  trouver le nombre de
-sous-réseaux possibles pour un bloc d’adresses réseau donné.
-La derniére proposition est un analysaeur de wifi.
-\n\nPour informations, problémes ou autres, n'hésité pas à nous
-contacter :\n     maxime.vallet1@etu.univ-lorraine.fr \n
-    zian.dupraz-rollin8@etu.univ-lorraine.fr"
-        android:textSize=
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="74dp" />20dp"
+        android:id="@+id/InformationsText"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ParpaingInformations"
+        android:textSize="15dp"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/IPButtonIP"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
