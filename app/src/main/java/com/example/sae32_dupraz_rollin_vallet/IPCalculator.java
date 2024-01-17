@@ -5,11 +5,11 @@ import android.util.Log;
 public class IPCalculator {
     private String address;
     private String prefix;
+    private String addressBin;
     public IPCalculator(String address, String prefix){
         this.address = address;
         this.prefix = prefix;
-
-        String addressBin = AddressToBaseTwo(address);
+        this.prefix = GetPrefix(prefix);
     }
 
     //Remet les prefixes /X et X.X.X.X sous la forme X
@@ -72,35 +72,32 @@ public class IPCalculator {
         return result;
     }
 
-    public String NetworkAddress(String addressBin, String prefix){
-        prefix = GetPrefix(prefix);
-
-        Log.d("cpt", prefix);
-        Log.d("cpt", addressBin);
-        addressBin = addressBin.substring(0,(Integer.valueOf(prefix)));
-        for(int i=Integer.valueOf(prefix);i<32;i++){
+    public String NetworkAddress(){
+        addressBin = AddressToBaseTwo(this.address);
+        addressBin = addressBin.substring(0,(Integer.valueOf(this.prefix)));
+        for(int i=Integer.valueOf(this.prefix);i<32;i++){
             addressBin += "0";
         }
 
         return toBaseTen(addressBin);
     }
 
-    public String BroadcastAddress(String addressBin, String prefix){
-        prefix = GetPrefix(prefix);
+    public String BroadcastAddress(){
+        addressBin = AddressToBaseTwo(this.address);
 
-        addressBin = addressBin.substring(0,(Integer.valueOf(prefix)));
-        for(int i=Integer.valueOf(prefix);i<32;i++){
+        addressBin = addressBin.substring(0,(Integer.valueOf(this.prefix)));
+        for(int i=Integer.valueOf(this.prefix);i<32;i++){
             addressBin += "1";
         }
 
         return toBaseTen(addressBin);
     }
 
-    public String FirstAddress(String addressBin, String prefix){
-        prefix = GetPrefix(prefix);
+    public String FirstAddress(){
+        addressBin = AddressToBaseTwo(this.address);
 
-        addressBin = addressBin.substring(0,(Integer.valueOf(prefix)));
-        for(int i=Integer.valueOf(prefix);i<31;i++){
+        addressBin = addressBin.substring(0,(Integer.valueOf(this.prefix)));
+        for(int i=Integer.valueOf(this.prefix);i<31;i++){
             addressBin += "0";
         }
 
@@ -109,11 +106,11 @@ public class IPCalculator {
         return toBaseTen(addressBin);
     }
 
-    public String LastAddress(String addressBin, String prefix){
-        prefix = GetPrefix(prefix);
+    public String LastAddress(){
+        addressBin = AddressToBaseTwo(this.address);
 
-        addressBin = addressBin.substring(0,(Integer.valueOf(prefix)));
-        for(int i=Integer.valueOf(prefix);i<31;i++){
+        addressBin = addressBin.substring(0,(Integer.valueOf(this.prefix)));
+        for(int i=Integer.valueOf(this.prefix);i<31;i++){
             addressBin += "1";
         }
 
@@ -122,9 +119,8 @@ public class IPCalculator {
         return toBaseTen(addressBin);
     }
 
-    public String NumberOfAddress(String prefix){
-        prefix = GetPrefix(prefix);
-        return String.valueOf((int) (Math.pow(2,(32-Integer.valueOf(prefix)))-2));
+    public String NumberOfAddress(){
+        return String.valueOf((int) (Math.pow(2,(32-Integer.valueOf(this.prefix)))-2));
     }
 
     //Convertis 32 bits en base 10 avec une notation décimale pointée

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -91,15 +92,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //Changement de langue (à finir)
+        //Changement de langue
         MainButtonLang.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Resources resources = getResources();
+                Configuration configuration = resources.getConfiguration();
                 Locale localeEn = new Locale("en");
-                Locale localeFr = new Locale("Default Value");
-                Locale.setDefault(localeEn);
-                Configuration config = new Configuration();
-                config.locale = localeEn;
-                Log.d("langueEn", "onClick: ");
+                Locale localeFr = new Locale("fr");
+
+                if (String.valueOf(configuration).contains("[en")) {
+                    configuration.setLocale(localeFr);
+                }
+                else {
+                    configuration.setLocale(localeEn);
+                }
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finishAffinity();
             }
         });
 
