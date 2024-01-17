@@ -2,14 +2,12 @@ package com.example.sae32_dupraz_rollin_vallet;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import java.util.Locale;
 
@@ -58,6 +56,30 @@ public class MainActivity extends AppCompatActivity {
                 MainButtonIP.setVisibility(View.VISIBLE);
                 MainButtonVLSM.setVisibility(View.VISIBLE);
                 MainButtonWIFI.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        //Changement d'activité (IP)
+        MainButtonIP.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, IP.class));
+            }
+        });
+
+
+        //Changement d'activité (VLSM)
+        MainButtonVLSM.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        //Changement d'activité (WI-FI)
+        MainButtonWIFI.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
             }
         });
 

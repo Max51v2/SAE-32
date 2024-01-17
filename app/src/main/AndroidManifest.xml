@@ -8,11 +8,14 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
+        android:resizeableActivity="true"
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.SAE32_DUPRAZROLLIN_VALLET"
-        android:resizeableActivity="true"
         tools:targetApi="31">
+        <activity
+            android:name=".IP"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

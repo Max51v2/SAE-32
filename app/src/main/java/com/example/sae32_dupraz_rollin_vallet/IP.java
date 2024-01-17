@@ -1,0 +1,67 @@
+package com.example.sae32_dupraz_rollin_vallet;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class IP extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ip);
+
+
+        //_____________Variables/Objets_______________
+        View MainBannerButtonHome = findViewById(R.id.MainBannerButtonHome);
+        View IPButtonIP = findViewById(R.id.IPButtonIP);
+        TextView IPNetworkAddressBox = findViewById(R.id.IPNetworkAddressBox);
+        TextView IPBroadcastAddressBox = findViewById(R.id.IPBroadcastAddressBox);
+        TextView IPRangeBox = findViewById(R.id.IPRangeBox);
+        TextView IPAvailableAddressBox = findViewById(R.id.IPAvailableAddressBox);
+        final EditText IPBoxIP =  (EditText) findViewById(R.id.IPBoxIP);
+        final EditText IPBoxMask =  (EditText) findViewById(R.id.IPBoxMask);
+        //____________________________________________
+
+
+        //Changement d'activité (IP)
+        MainBannerButtonHome.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(IP.this, MainActivity.class));
+            }
+        });
+
+
+        IPButtonIP.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            public void onClick(View v) {
+                //Récupération du champ IP
+                String address = String.valueOf(IPBoxIP.getText());
+                String prefix = String.valueOf(IPBoxMask.getText());
+                IPBoxIP.setText("");
+                IPBoxMask.setText("");
+                IPBoxIP.requestFocus();
+                IPBoxMask.requestFocus();
+
+                //Envoi des valeurs dans le layout
+                try {
+                    IPCalculator ip1 = new IPCalculator(address, prefix);
+
+                    IPNetworkAddressBox.setText(ip1.NetworkAddress(address, prefix));
+                    IPBroadcastAddressBox.setText(ip1.BroadcastAddress(address, prefix));
+                    IPRangeBox.setText(ip1.FirstAddress(address, prefix) + " - " + ip1.LastAddress(address, prefix));
+                    IPAvailableAddressBox.setText(ip1.NumberOfAddress(prefix));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+}

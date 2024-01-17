@@ -7,4 +7,12 @@
     <string name="analyseur_wi_fi">Analyseur WI-FI</string>
     <string name="langage">Langage : FR</string>
     <string name="informations" translatable="false">Informations</string>
+    <string name="adresse_ip">Adresse IP :</string>
+    <string name="envoi">Envoi</string>
+    <string name="masque_suffixe">Masque</string>
+    <string name="placeholder" translatable="false">Placeholder</string>
+    <string name="adresse_reseau">Adresse réseau :</string>
+    <string name="adresse_de_diffusion">Adresse de diffusion :</string>
+    <string name="plage">Plage :</string>
+    <string name="nombre_d_adresses">Nombre d\'adresses :</string>
 </resources>

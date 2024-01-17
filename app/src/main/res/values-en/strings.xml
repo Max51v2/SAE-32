@@ -4,4 +4,11 @@
     <string name="calculateur_vlsm">VLSM Calculator</string>
     <string name="analyseur_wi_fi">Wi-FI Analyser</string>
     <string name="langage">Langage : EN</string>
+    <string name="adresse_ip">IP Address :</string>
+    <string name="envoi">Send</string>
+    <string name="masque_suffixe">Mask</string>
+    <string name="adresse_reseau">Network address :</string>
+    <string name="adresse_de_diffusion">Broadcast address</string>
+    <string name="plage">Range :</string>
+    <string name="nombre_d_adresses">Number of address :</string>
 </resources>
