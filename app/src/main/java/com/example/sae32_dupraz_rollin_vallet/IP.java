@@ -59,7 +59,7 @@ public class IP extends AppCompatActivity {
                 }
                 IPNetworkAddressBox.setText(ip1.NetworkAddress());
                 IPBroadcastAddressBox.setText(ip1.BroadcastAddress());
-                IPRangeBox.setText(ip1.FirstAddress() + "/" + ip1.LastAddress());
+                IPRangeBox.setText(ip1.FirstAddress() + "-" + ip1.LastAddress());
                 IPAvailableAddressBox.setText(ip1.NumberOfAddress());
             }
         });
