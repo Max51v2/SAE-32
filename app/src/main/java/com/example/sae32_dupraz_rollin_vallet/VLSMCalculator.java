@@ -155,7 +155,6 @@ public class VLSMCalculator extends IPCalculator {
                 this.IPExceeded = true;
             }
         }
-        Log.d("tagtest", ArraySubnetList.get(0)+">"+((int) Math.pow(2, 32 - Double.parseDouble(this.mask))-2));
 
 
         //Stock le résultat dans result
