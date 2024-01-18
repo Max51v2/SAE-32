@@ -94,23 +94,28 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Changement de langue
+        Locale localeEn = new Locale("en");
+        Locale localeFr = new Locale("fr");
         MainButtonLang.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Resources resources = getResources();
                 Configuration configuration = resources.getConfiguration();
-                Locale localeEn = new Locale("en");
-                Locale localeFr = new Locale("fr");
+                configuration.getLocales();
 
-                if (String.valueOf(configuration).contains("[en")) {
+                if (configuration.getLocales().toString().contains("en")){
                     configuration.setLocale(localeFr);
-                }
-                else {
+                    Log.d("tagtest", "En");
+                } else if (configuration.getLocales().toString().contains("fr")) {
                     configuration.setLocale(localeEn);
+                    Log.d("tagtest", "Fr");
                 }
+
+                getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finishAffinity();
+                finish();
             }
         });
 
