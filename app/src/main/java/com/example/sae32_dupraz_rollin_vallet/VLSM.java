@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,7 +50,18 @@ public class VLSM extends AppCompatActivity {
                 VLSMBoxMask.requestFocus();
                 VLSMBoxSize.requestFocus();
 
-                VLSMCalculator VLSM1 = new VLSMCalculator(address, mask, subnetlist);
+                Resources resources = getResources();
+                Configuration configuration = resources.getConfiguration();
+                configuration.getLocales();
+                String lang="";
+                if (configuration.toString().contains("en")){
+                    lang = "en";
+                }
+                if (configuration.toString().contains("fr")) {
+                    lang = "fr";
+                }
+
+                VLSMCalculator VLSM1 = new VLSMCalculator(address, mask, subnetlist, lang);
                 VLSMTextAnswer.setText(VLSM1.getResult());
             }
         });
