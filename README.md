@@ -2,6 +2,14 @@ Dernières modifications :
 
 18/01/2024 : 
 Correction de bugs : 
+  - Correction d'un problème causant le premier appui sur le bouton lang d'être ignoré quand la langue de départ est Fr dans MainActivity
+  - Dépassement du texte dans Information_activity
+Ajout :
+  - Activité WIFI
+  - Retrait des animations de transition entre activités (sauf retour en arrière)
+
+18/01/2024 : 
+Correction de bugs : 
   - Réecriture de l'incrémentation des octets dans VLSMCalculator => erreurs de calcul lorsque l'on incrémente un octet + d'une fois
   - Réecriture du if qui change le language lors du click sur le bouton qui change le langage dans MainActivity => marche une seule fois
 Ajout :
