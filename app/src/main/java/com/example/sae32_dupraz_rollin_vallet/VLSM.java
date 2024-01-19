@@ -33,7 +33,7 @@ public class VLSM extends AppCompatActivity {
         //Changement d'activité (Main)
         VLSMBannerButtonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(VLSM.this, MainActivity.class));
+                startActivity(new Intent(VLSM.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
 

@@ -33,7 +33,7 @@ public class IP extends AppCompatActivity {
         //Changement d'activité (Main)
         MainBannerButtonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(IP.this, MainActivity.class));
+                startActivity(new Intent(IP.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
 

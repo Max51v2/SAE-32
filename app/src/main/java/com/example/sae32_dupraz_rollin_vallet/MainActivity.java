@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         //Changement d'activité (Informations)
         MainButtonInfo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Informations.class));
+                startActivity(new Intent(MainActivity.this, Informations.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
 
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         //Changement d'activité (IP)
         MainButtonIP.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, IP.class));
+                startActivity(new Intent(MainActivity.this, IP.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         //Changement d'activité (VLSM)
         MainButtonVLSM.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, VLSM.class));
+                startActivity(new Intent(MainActivity.this, VLSM.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         //Changement d'activité (WI-FI)
         MainButtonWIFI.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                startActivity(new Intent(MainActivity.this, WIFI.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
 
@@ -102,18 +102,19 @@ public class MainActivity extends AppCompatActivity {
                 Configuration configuration = resources.getConfiguration();
                 configuration.getLocales();
 
-                if (configuration.getLocales().toString().contains("en")){
+                Log.d("tagtest", configuration.getLocales().toString());
+                if (configuration.getLocales().toString().contains("[en")){
                     configuration.setLocale(localeFr);
-                    Log.d("tagtest", "En");
-                } else if (configuration.getLocales().toString().contains("fr")) {
+                    Log.d("tagtest", "fr");
+                } else if (configuration.getLocales().toString().contains("[fr")) {
                     configuration.setLocale(localeEn);
-                    Log.d("tagtest", "Fr");
+                    Log.d("tagtest", "en");
                 }
 
                 getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
 
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
             }

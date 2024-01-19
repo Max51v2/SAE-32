@@ -18,7 +18,7 @@ public class  Informations extends AppCompatActivity {
         //Changement d'activité (IP)
         InformationsBannerButtonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(Informations.this, MainActivity.class));
+                startActivity(new Intent(Informations.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
     }
