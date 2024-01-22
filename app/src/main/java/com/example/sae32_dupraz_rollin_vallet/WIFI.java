@@ -55,6 +55,7 @@ public class WIFI extends AppCompatActivity {
                     ArrayList<String> interfaceName = new ArrayList<>();
                     ArrayList<String> interfaceAddress = new ArrayList<>();
                     ArrayList<String> interfacemask = new ArrayList<>();
+                    ArrayList<String> interfaceMAC = new ArrayList<>();
                     ArrayList<Integer> size = new ArrayList<>();
                     String address;
 
@@ -81,6 +82,12 @@ public class WIFI extends AppCompatActivity {
                         address = address.substring(address.indexOf("/")+1,address.indexOf("[")-1);
                         interfacemask.add(address);
 
+                        //@MAC (Nécéssite d'être ROOT)
+                        //address = Arrays.toString(networkInterface.getHardwareAddress());
+                        //Log.d("test", Arrays.toString(networkInterface.getHardwareAddress()));
+                        //interfaceMAC.add(address);
+
+                        //Seconde adresse
                         if (networkInterface.getInterfaceAddresses().size() > 1){
                             //adresses interfaces
                             address = networkInterface.getInterfaceAddresses().get(1).toString();
@@ -99,6 +106,10 @@ public class WIFI extends AppCompatActivity {
                             address = address.substring(address.indexOf("/")+1,address.indexOf("[")-1);
                             interfacemask.add(address);
                             interfaceName.add("placeholder");
+
+                            //@MAC
+                            //address = Arrays.toString(networkInterface.getHardwareAddress());
+                            //interfaceMAC.add(address);
 
                             size.add(2);
                         }
@@ -121,6 +132,7 @@ public class WIFI extends AppCompatActivity {
                         }
                         else {
                             resultFr[0] += "Interface : " + interfaceName.get(i).toString() + " \n";
+                            //resultFr[0] += "Adresse MAC : " + interfaceMAC.get(i).toString() + " \n";
                             if (interfaceName.get(i+1).contains("placeholder") && i < iMax-1) {
                                 resultFr[0] += "Adresse n°1 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n";
                             }
@@ -134,6 +146,7 @@ public class WIFI extends AppCompatActivity {
                        }
                        else {
                            resultEn[0] += "Interface : " + interfaceName.get(i).toString() + " \n";
+                           //resultEn[0] += "MAC Address : " + interfaceMAC.get(i).toString() + " \n";
                            if (interfaceName.get(i+1).contains("placeholder") && i < iMax-1){
                                resultEn[0] += "Address n°1 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n";
                            }
