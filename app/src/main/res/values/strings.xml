@@ -20,4 +20,5 @@
     <string name="wi_fi" translatable="false">WI-FI</string>
     <string name="SR_list">(SR1/SR2/.../SRn)</string>
     <string name="configuration_interfaces">Configuration interfaces</string>
+    <string name="indications_interfaces">Indications sur les interfaces : \n -Dummy : similaire à l\'interface de Loopback \n -Wlan : connexion WI-FI \n -Rmnet : connexion cellulaire \n -Loopback : interface virtuelle constament activée</string>
 </resources>

@@ -31,6 +31,8 @@ public class WIFI extends AppCompatActivity {
         View WIFITextInterface = findViewById(R.id.WIFITextInterface);
         View WIFIButtonInterface = findViewById(R.id.WIFIButtonInterface);
         TextView WIFITextInterface2 = findViewById(R.id.WIFITextInterface2);
+        View WIFITextInterface3 = findViewById(R.id.WIFITextInterface3);
+        View WIFIScrollView = findViewById(R.id.WIFIScrollView);
         View WIFIButtonInterfaceClose = findViewById(R.id.WIFIButtonInterfaceClose);
         //____________________________________________
 
@@ -96,60 +98,56 @@ public class WIFI extends AppCompatActivity {
                             address = address.substring(address.indexOf("/")+1);
                             address = address.substring(address.indexOf("/")+1,address.indexOf("[")-1);
                             interfacemask.add(address);
+                            interfaceName.add("placeholder");
 
                             size.add(2);
                         }
-                        size.add(1);
+                        else {
+                            size.add(1);
+                        }
                     }
+
 
                     //Impression des resultats
-                    int compteur;
-                    int i = 0;
-                    int iback;
                     int iMax = 0;
-
-                    for (int a=0; a < size.size(); a++){
-                        iMax += size.get(a);
+                    for (int i = 0; i < size.size(); i++){
+                        iMax += size.get(i);
                     }
-                    Log.d("test", "#######################");
-                   while(i < iMax) {
-                       iback = i;
-                       compteur = 0;
-                        resultFr[0] += "Interface : " + interfaceName.get(i).toString() + " \n";
-                        if (size.get(i) == 2) {
-                            while (compteur < 2) {
-                                resultFr[0] += "Adresse : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
-                                compteur++;
-                                i++;
-                            }
+
+
+                   for( int i = 0; i < iMax; i++) {
+                        if (interfaceName.get(i).contains("placeholder")){
+                            resultFr[0] += "Adresse n°2 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
                         }
                         else {
-                            resultFr[0] += "Adresse : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
-                            i++;
+                            resultFr[0] += "Interface : " + interfaceName.get(i).toString() + " \n";
+                            if (interfaceName.get(i+1).contains("placeholder") && i < iMax-1) {
+                                resultFr[0] += "Adresse n°1 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n";
+                            }
+                            else {
+                                resultFr[0] += "Adresse : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
+                            }
                         }
 
-                        i = iback;
-                        compteur=0;
-                        resultEn[0] += "Interface : " + interfaceName.get(i).toString() + " \n";
-                        if (size.get(i) == 2) {
-                            while (compteur < 2) {
-                                resultEn[0] += "Address : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
-                                compteur++;
-                                i++;
-                            }
-                        }
-                        else {
-                            resultEn[0] += "Address : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
-                            i++;
-                        }
-                       Log.d("test", Arrays.toString(resultEn));
-                       Log.d("test", String.valueOf(i));
+                       if (interfaceName.get(i).contains("placeholder")){
+                           resultEn[0] += "Address n°2 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
+                       }
+                       else {
+                           resultEn[0] += "Interface : " + interfaceName.get(i).toString() + " \n";
+                           if (interfaceName.get(i+1).contains("placeholder") && i < iMax-1){
+                               resultEn[0] += "Address n°1 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n";
+                           }
+                           else {
+                               resultEn[0] += "Address : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
+                           }
+                       }
                     }
                 } catch (SocketException e) {
                     throw new RuntimeException(e);
                 }
             }
         };
+
         LocalHost.start();
 
         //Affichage des informations sur les interfaces lors du click sur le bouton
@@ -160,6 +158,8 @@ public class WIFI extends AppCompatActivity {
                     WIFIButtonInterface.setVisibility(View.INVISIBLE);
                     WIFITextInterface2.setVisibility(View.VISIBLE);
                     WIFIButtonInterfaceClose.setVisibility(View.VISIBLE);
+                    WIFITextInterface3.setVisibility(View.VISIBLE);
+                    WIFIScrollView.setVisibility(View.VISIBLE);
 
                     //Choix langue
                     Resources resources = getResources();
@@ -182,6 +182,8 @@ public class WIFI extends AppCompatActivity {
                     WIFIButtonInterface.setVisibility(View.VISIBLE);
                     WIFITextInterface2.setVisibility(View.INVISIBLE);
                     WIFIButtonInterfaceClose.setVisibility(View.INVISIBLE);
+                    WIFITextInterface3.setVisibility(View.INVISIBLE);
+                    WIFIScrollView.setVisibility(View.INVISIBLE);
 
                     WIFITextInterface2.setText("");
             }
