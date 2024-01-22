@@ -44,6 +44,15 @@ public class IP extends AppCompatActivity {
                 //Récupération du champ IP
                 String address = String.valueOf(IPBoxIP.getText());
                 String mask = String.valueOf(IPBoxMask.getText());
+
+                //Retrait des espaces
+                if (address.contains(" ")){
+                    address = address.substring(0,address.indexOf(" "))+address.substring(address.indexOf(" ")+1,address.length());
+                }
+                if (mask.contains(" ")){
+                    mask = mask.substring(0,mask.indexOf(" "))+mask.substring(mask.indexOf(" ")+1,mask.length());
+                }
+
                 IPBoxIP.setText("");
                 IPBoxMask.setText("");
                 IPBoxIP.requestFocus();

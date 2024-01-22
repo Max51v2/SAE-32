@@ -50,6 +50,17 @@ public class VLSM extends AppCompatActivity {
                 VLSMBoxMask.requestFocus();
                 VLSMBoxSize.requestFocus();
 
+                //Retrait des espaces
+                if (address.contains(" ")){
+                    address = address.substring(0,address.indexOf(" "))+address.substring(address.indexOf(" ")+1,address.length());
+                }
+                if (mask.contains(" ")){
+                    mask = mask.substring(0,mask.indexOf(" "))+mask.substring(mask.indexOf(" ")+1,mask.length());
+                }
+                if (mask.contains(" ")){
+                    subnetlist = subnetlist.substring(0,subnetlist.indexOf(" "))+subnetlist.substring(subnetlist.indexOf(" ")+1,subnetlist.length());
+                }
+
                 Resources resources = getResources();
                 Configuration configuration = resources.getConfiguration();
                 configuration.getLocales();

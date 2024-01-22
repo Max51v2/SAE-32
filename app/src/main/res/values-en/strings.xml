@@ -12,5 +12,6 @@
     <string name="plage">Range :</string>
     <string name="nombre_d_adresses">Number of address :</string>
     <string name="ParpaingInformations">NE PAS OUBLIER DE TRADUIRE</string>
-    <string name="taille">Size (SR1/SR2/.../SRn)</string>
+    <string name="taille">Size :</string>
+    <string name="SR_list">(SN1/SN2/.../SNn)</string>
 </resources>
