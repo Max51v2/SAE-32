@@ -40,33 +40,72 @@
         />
 
     <TextView
-        android:id="@+id/WIFITextIP"
-        android:layout_width="200dp"
+        android:id="@+id/WIFITextInterface"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="@string/adresse_ip"
+        android:text="@string/configuration_interfaces"
         android:textAlignment="center"
-        android:textSize="18dp"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textSize="20dp"
+        android:layout_marginLeft="30dp"
+        android:paddingTop="2dp"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/WIFIButtonInterface"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/WIFITextIP2"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
+    <ImageButton
+        android:id="@+id/WIFIButtonInterface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wifi_button_information"
+        android:background="@color/white"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginRight="220dp"
+        android:onClick=""
+        app:layout_constraintTop_toTopOf="@id/WIFITextInterface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        tools:ignore="OnClick" />
+
+    <ImageButton
+        android:id="@+id/WIFIButtonInterfaceClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wifi_button_cross"
+        android:background="@color/white"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="82dp"
+        android:onClick=""
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"
+        tools:ignore="OnClick" />
+
+    <TextView
+        android:id="@+id/WIFITextInterface2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintHorizontal_bias="0.5"
         android:text=""
         android:textSize="18dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="@id/WIFITextIP"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

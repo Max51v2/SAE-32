@@ -19,4 +19,5 @@
     <string name="taille">Taille :</string>
     <string name="wi_fi" translatable="false">WI-FI</string>
     <string name="SR_list">(SR1/SR2/.../SRn)</string>
+    <string name="configuration_interfaces">Configuration interfaces</string>
 </resources>
