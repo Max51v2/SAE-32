@@ -46,11 +46,13 @@ public class IP extends AppCompatActivity {
                 String mask = String.valueOf(IPBoxMask.getText());
 
                 //Retrait des espaces
-                if (address.contains(" ")){
-                    address = address.substring(0,address.indexOf(" "))+address.substring(address.indexOf(" ")+1,address.length());
-                }
-                if (mask.contains(" ")){
-                    mask = mask.substring(0,mask.indexOf(" "))+mask.substring(mask.indexOf(" ")+1,mask.length());
+                while(address.contains(" ") | mask.contains(" ") | mask.contains(" ")) {
+                    if (address.contains(" ")) {
+                        address = address.substring(0, address.indexOf(" ")) + address.substring(address.indexOf(" ") + 1, address.length());
+                    }
+                    if (mask.contains(" ")) {
+                        mask = mask.substring(0, mask.indexOf(" ")) + mask.substring(mask.indexOf(" ") + 1, mask.length());
+                    }
                 }
 
                 IPBoxIP.setText("");
@@ -58,18 +60,24 @@ public class IP extends AppCompatActivity {
                 IPBoxIP.requestFocus();
                 IPBoxMask.requestFocus();
 
-                //Envoi des valeurs dans le layout
-                IPCalculator ip1;
-                try {
-                    ip1 = new IPCalculator(address, mask);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    throw new RuntimeException(e);
+                //On ne lance rien si un champ est vide
+                if (address.equals("") | mask.equals("")){
+
                 }
-                IPNetworkAddressBox.setText(ip1.NetworkAddress());
-                IPBroadcastAddressBox.setText(ip1.BroadcastAddress());
-                IPRangeBox.setText(ip1.FirstAddress() + "-" + ip1.LastAddress());
-                IPAvailableAddressBox.setText(ip1.NumberOfAddress());
+                else {
+                    //Envoi des valeurs dans le layout
+                    IPCalculator ip1;
+                    try {
+                        ip1 = new IPCalculator(address, mask);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        throw new RuntimeException(e);
+                    }
+                    IPNetworkAddressBox.setText(ip1.NetworkAddress());
+                    IPBroadcastAddressBox.setText(ip1.BroadcastAddress());
+                    IPRangeBox.setText(ip1.FirstAddress() + "-" + ip1.LastAddress());
+                    IPAvailableAddressBox.setText(ip1.NumberOfAddress());
+                }
             }
         });
     }
