@@ -1,5 +1,11 @@
 Dernières modifications :
 
+22/01/2024 : 
+Correction de bugs : 
+  - Correction d'un problème causant le crash de l'application lorsque l'on rentre soit rien ou un espace dans un champ dans IP et VLSM
+Ajout :
+  - Activité WIFI <= donne toutes les info sur une interface
+
 18/01/2024 : 
 Correction de bugs : 
   - Correction d'un problème causant le premier appui sur le bouton lang d'être ignoré quand la langue de départ est Fr dans MainActivity
