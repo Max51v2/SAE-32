@@ -22,6 +22,16 @@ import java.util.Enumeration;
 
 public class WIFI extends AppCompatActivity {
 
+    boolean run = false;
+
+
+    //On arrete la boucle quand on met l'app en pause
+    protected void onPause(){
+        super.onPause();
+        run = false;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +51,17 @@ public class WIFI extends AppCompatActivity {
         View WIFIWarningLogo = findViewById(R.id.WIFIWarningLogo);
         TextView WIFIWarningText = findViewById(R.id.WIFIWarningText);
         TextView WIFITextStatus = findViewById(R.id.WIFITextStatus);
+        TextView WIFITextStandard = findViewById(R.id.WIFITextStandard);
+        TextView WIFITextRSSI = findViewById(R.id.WIFITextRSSI);
+        TextView WIFITextQuality = findViewById(R.id.WIFITextQuality);
+        TextView WIFITextTxRx = findViewById(R.id.WIFITextTxRx);
         //____________________________________________
 
 
         //Changement d'activité (Main)
         WIFIBannerButtonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                run = false;
                 startActivity(new Intent(WIFI.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
@@ -182,7 +197,7 @@ public class WIFI extends AppCompatActivity {
                     lang = "fr";
                 }
 
-                while (true) {
+                while (run) {
                     //Informations WIFI
                     WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
                     WifiInfo infos = wifi.getConnectionInfo();
@@ -193,8 +208,7 @@ public class WIFI extends AppCompatActivity {
                     SSID = SSID.substring(1, SSID.length() - 1);
 
 
-                    //String state = wifi.getWifiState();
-                    Log.d("testTAG", String.valueOf(wifi.getWifiState()));
+                    //Etat WIFI
                     String str = "";
                     if (wifi.getWifiState() == 1) {
                         if (lang.equals("fr")) {
@@ -214,26 +228,89 @@ public class WIFI extends AppCompatActivity {
                     }
 
 
+                    String connectionInfo = wifi.getConnectionInfo().toString();
+                    Log.d("testTAG", connectionInfo);
+
+                    //Stadard WIFI
+                    String standard = connectionInfo.substring(connectionInfo.indexOf("standard:")+10,connectionInfo.indexOf("standard:")+11);
+                    if (lang.equals("fr")) {
+                        standard = "Standard : WIFI "+standard;
+                    }
+                    if (lang.equals("en")) {
+                        standard = "Standard : WIFI "+standard;
+                    }
+
+
+                    //RSSI
+                    String rssi = connectionInfo.substring(connectionInfo.indexOf("RSSI:")+6,connectionInfo.indexOf("RSSI:")+9);
+                    if (rssi.contains(",")){
+                        rssi = rssi.substring(0,rssi.indexOf(",")-1);
+                    }
+                    if (lang.equals("fr")) {
+                        rssi = "RSSI : "+rssi+" dBm";
+                    }
+                    if (lang.equals("en")) {
+                        rssi = "RSSI : "+rssi+" dBm";
+                    }
+
+
+                    //Qualité WIFI
+                    String score = connectionInfo.substring(connectionInfo.indexOf("score:")+7,connectionInfo.indexOf("score:")+9);
+                    if (score.contains(",")){
+                        score = score.substring(0,score.indexOf(",")-1);
+                    }
+                    if (lang.equals("fr")) {
+                        score = "Qualité : "+score+"%";
+                    }
+                    if (lang.equals("en")) {
+                        score = "Quality : "+score+"%";
+                    }
+
+
+                    //Tx et Rx
+                    String Tx = connectionInfo.substring(connectionInfo.indexOf("Tx Link speed:")+15,connectionInfo.length()-1);
+                    Tx = Tx.substring(0,Tx.indexOf(","));
+                    String Rx = connectionInfo.substring(connectionInfo.indexOf("Rx Link speed:")+15,connectionInfo.length()-1);
+                    Rx = Rx.substring(0,Rx.indexOf(","));
+                    String speed = null;
+                    if (lang.equals("fr")) {
+                        speed = "Tx/Rx : "+Tx+"/"+Rx;
+                    }
+                    if (lang.equals("en")) {
+                        speed = "Tx/Rx : "+Tx+"/"+Rx;
+                    }
+                    Log.d("testTAG",speed);
+
+
                     //Mise à jour des éléments dans le Thread principal sinon ça plante
                     String finalStr = str;
                     String finalSSID = SSID;
+                    String finalStandard = standard;
+                    String finalRssi = rssi;
+                    String finalScore = score;
+                    String finalSpeed = speed;
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             WIFITextSSID.setText("SSID : " + finalSSID);
                             WIFITextStatus.setText(finalStr);
+                            WIFITextStandard.setText(finalStandard);
+                            WIFITextRSSI.setText(finalRssi);
+                            WIFITextQuality.setText(finalScore);
+                            WIFITextTxRx.setText(finalSpeed);
                         }
                     });
 
 
-                    //Actualisation toutes les secondes
+                    //Actualisation toutes les 200 ms
                     synchronized (this) {
                         try {
-                            this.wait(200);
+                            this.wait(100);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
                     }
+
                 }
             }
 
@@ -241,6 +318,7 @@ public class WIFI extends AppCompatActivity {
         //###################### Fin Thread 2 ######################
 
 
+        run = true;
         LocalHost2.start();
 
 
@@ -267,6 +345,13 @@ public class WIFI extends AppCompatActivity {
                 WIFIButtonInterfaceClose.setVisibility(View.VISIBLE);
                 WIFITextInterface3.setVisibility(View.VISIBLE);
                 WIFIScrollView.setVisibility(View.VISIBLE);
+                WIFITextSSID.setVisibility(View.INVISIBLE);
+                WIFITextStatus.setVisibility(View.INVISIBLE);
+                WIFITextStandard.setVisibility(View.INVISIBLE);
+                WIFITextRSSI.setVisibility(View.INVISIBLE);
+                WIFITextQuality.setVisibility(View.INVISIBLE);
+                WIFITextTxRx.setVisibility(View.INVISIBLE);
+
 
                 //Choix langue
                 Resources resources = getResources();
@@ -291,6 +376,12 @@ public class WIFI extends AppCompatActivity {
                 WIFIButtonInterfaceClose.setVisibility(View.INVISIBLE);
                 WIFITextInterface3.setVisibility(View.INVISIBLE);
                 WIFIScrollView.setVisibility(View.INVISIBLE);
+                WIFITextSSID.setVisibility(View.VISIBLE);
+                WIFITextStatus.setVisibility(View.VISIBLE);
+                WIFITextStandard.setVisibility(View.VISIBLE);
+                WIFITextRSSI.setVisibility(View.VISIBLE);
+                WIFITextQuality.setVisibility(View.VISIBLE);
+                WIFITextTxRx.setVisibility(View.VISIBLE);
 
                 WIFITextInterface2.setText("");
             }
@@ -323,6 +414,7 @@ public class WIFI extends AppCompatActivity {
 
 
         //Affichage ou non de l'avertissement
+        //Affiché
         if (checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED | checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED | isGpsEnabled == false) {
             WIFIWarningBackground.setVisibility(View.VISIBLE);
             WIFIButtonInterface.setVisibility(View.INVISIBLE);
@@ -331,7 +423,13 @@ public class WIFI extends AppCompatActivity {
             WIFIWarningLogo.setVisibility(View.VISIBLE);
             WIFIWarningText.setVisibility(View.VISIBLE);
             WIFITextStatus.setVisibility(View.INVISIBLE);
-        } else {
+            WIFITextStandard.setVisibility(View.INVISIBLE);
+            WIFITextRSSI.setVisibility(View.INVISIBLE);
+            WIFITextQuality.setVisibility(View.INVISIBLE);
+            WIFITextTxRx.setVisibility(View.INVISIBLE);
+        }
+        //Masqué
+        else {
             WIFIWarningBackground.setVisibility(View.INVISIBLE);
             WIFIButtonInterface.setVisibility(View.VISIBLE);
             WIFITextInterface.setVisibility(View.VISIBLE);
@@ -339,6 +437,11 @@ public class WIFI extends AppCompatActivity {
             WIFIWarningLogo.setVisibility(View.INVISIBLE);
             WIFIWarningText.setVisibility(View.INVISIBLE);
             WIFITextStatus.setVisibility(View.VISIBLE);
+            WIFITextStandard.setVisibility(View.VISIBLE);
+            WIFITextRSSI.setVisibility(View.VISIBLE);
+            WIFITextQuality.setVisibility(View.INVISIBLE);
+            WIFITextQuality.setVisibility(View.VISIBLE);
+            WIFITextTxRx.setVisibility(View.VISIBLE);
         }
 
 
