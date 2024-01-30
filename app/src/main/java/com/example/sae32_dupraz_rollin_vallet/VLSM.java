@@ -72,10 +72,10 @@ public class VLSM extends AppCompatActivity {
                     Configuration configuration = resources.getConfiguration();
                     configuration.getLocales();
                     String lang = "";
-                    if (configuration.getLocales().toString().contains("en")) {
+                    if (configuration.getLocales().toString().contains("[en")) {
                         lang = "en";
                     }
-                    if (configuration.getLocales().toString().contains("fr")) {
+                    if (configuration.getLocales().toString().contains("[fr")) {
                         lang = "fr";
                     }
 

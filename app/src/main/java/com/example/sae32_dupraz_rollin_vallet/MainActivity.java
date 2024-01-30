@@ -1,15 +1,17 @@
 package com.example.sae32_dupraz_rollin_vallet;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //_____________Variables/Objets_______________
         View MainBannerButton = findViewById(R.id.MainBannerButton);
@@ -59,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
                 MainButtonWIFI.setVisibility(View.VISIBLE);
             }
         });
+
+
+
+        //Permissions
+        requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
 
         //Changement d'activité (Informations)
@@ -105,10 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("tagtest", configuration.getLocales().toString());
                 if (configuration.getLocales().toString().contains("[en")){
                     configuration.setLocale(localeFr);
-                    Log.d("tagtest", "fr");
                 } else if (configuration.getLocales().toString().contains("[fr")) {
                     configuration.setLocale(localeEn);
-                    Log.d("tagtest", "en");
                 }
 
                 getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
@@ -120,5 +126,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    //Permissions
+    protected void onStart(){
+        super.onStart();
+        if (checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED | checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
     }
 }
