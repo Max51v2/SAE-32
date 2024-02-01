@@ -229,7 +229,7 @@ public class WIFI extends AppCompatActivity {
 
 
                     String connectionInfo = wifi.getConnectionInfo().toString();
-                    Log.d("testTAG", connectionInfo);
+
 
                     //Stadard WIFI
                     String standard = connectionInfo.substring(connectionInfo.indexOf("standard:")+10,connectionInfo.indexOf("standard:")+11);
@@ -255,15 +255,52 @@ public class WIFI extends AppCompatActivity {
 
 
                     //Qualité WIFI
-                    String score = connectionInfo.substring(connectionInfo.indexOf("score:")+7,connectionInfo.indexOf("score:")+9);
-                    if (score.contains(",")){
-                        score = score.substring(0,score.indexOf(",")-1);
+                    //Broken (affiche 60 constamment)
+                    //String score = connectionInfo.substring(connectionInfo.indexOf("score:")+7,connectionInfo.indexOf("score:")+9);
+                    //if (score.contains(",")){
+                    //    score = score.substring(0,score.indexOf(",")-1);
+                    //}
+                    //if (lang.equals("fr")) {
+                    //    score = "Qualité : "+score+"%";
+                    //}
+                    //if (lang.equals("en")) {
+                    //    score = "Quality : "+score+"%";
+                    //}
+
+                    //Fix
+                    String rssiTemp = rssi.substring(7,rssi.length()-4);
+                    String score = "";
+                    if (Integer.valueOf(rssiTemp) > -50){
+                        if (lang.equals("fr")) {
+                            score = "Qualité : Excellent";
+                        }
+                        if (lang.equals("en")) {
+                            score = "Quality : Excellent";
+                        }
                     }
-                    if (lang.equals("fr")) {
-                        score = "Qualité : "+score+"%";
+                    if (Integer.valueOf(rssiTemp) <= -50 && Integer.valueOf(rssiTemp) > -60){
+                        if (lang.equals("fr")) {
+                            score = "Qualité : Bon";
+                        }
+                        if (lang.equals("en")) {
+                            score = "Quality : Good";
+                        }
                     }
-                    if (lang.equals("en")) {
-                        score = "Quality : "+score+"%";
+                    if (Integer.valueOf(rssiTemp) <= -60 && Integer.valueOf(rssiTemp) > -70){
+                        if (lang.equals("fr")) {
+                            score = "Qualité : Moyen";
+                        }
+                        if (lang.equals("en")) {
+                            score = "Quality : Fair";
+                        }
+                    }
+                    if (Integer.valueOf(rssiTemp) <= -70){
+                        if (lang.equals("fr")) {
+                            score = "Qualité : Faible";
+                        }
+                        if (lang.equals("en")) {
+                            score = "Quality : Weak";
+                        }
                     }
 
 
