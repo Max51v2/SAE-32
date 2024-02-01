@@ -1,5 +1,12 @@
 Dernières modifications :
 
+30/01/2024 : 
+Ajout :
+  - Activité WIFI <= Page Warning qui demande d'ajouter les droits de localisation
+  - Activité WIFI <= Requête pour avoir les droits de localisation
+  - Activité WIFI <= informations complémentaires
+  - Activité WIFI <= boucle infinie avec pauses
+
 22/01/2024 : 
 Correction de bugs : 
   - Correction d'un problème causant le crash de l'application lorsque l'on rentre soit rien ou un espace dans un champ dans IP et VLSM
