@@ -436,15 +436,15 @@ public class WIFI extends AppCompatActivity {
                 str = "Veuillez activer la localisation sur l'appareil \n\n";
             }
             if (lang.equals("en")) {
-                str = "Please enable localisation on the device \n\n";
+                str = "Please enable location on the device \n\n";
             }
         }
         if (checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED | checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
             if (lang.equals("fr")) {
-                str += "Veuillez redémarrer l'application et activer la localisarion précise";
+                str += "Veuillez redémarrer l'application et activer la localisation précise";
             }
             if (lang.equals("en")) {
-                str += "Please restart the app and enable fine localisation";
+                str += "Please restart the app and enable fine location";
             }
         }
         WIFIWarningText.setText(str);
