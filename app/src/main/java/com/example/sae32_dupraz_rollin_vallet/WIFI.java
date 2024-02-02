@@ -339,7 +339,7 @@ public class WIFI extends AppCompatActivity {
                     });
 
 
-                    //Actualisation toutes les 200 ms
+                    //Actualisation toutes les 100 ms
                     synchronized (this) {
                         try {
                             this.wait(100);
@@ -390,7 +390,7 @@ public class WIFI extends AppCompatActivity {
                 WIFITextTxRx.setVisibility(View.INVISIBLE);
 
 
-                //Choix langue
+                //Définission du contenu de la page
                 Resources resources = getResources();
                 Configuration configuration = resources.getConfiguration();
                 configuration.getLocales();
@@ -426,7 +426,7 @@ public class WIFI extends AppCompatActivity {
 
 
         //Warnings
-        //Création du contenu de l'avertissement
+        //Définission du contenu de l'avertissement
         Context context = this;
         LocationManager locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
         boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
