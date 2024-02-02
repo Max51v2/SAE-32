@@ -1,5 +1,6 @@
 L'APK est téléchargeable à cette adresse : https://drive.google.com/file/d/1EcGfwRuWNuqU0WbFpVJuHrXVj5jE-qQN/view?usp=sharing
-
+=> note : google flag le fichier comme contenant un virus car c'est un apk
+=> Scan VirusTotal : https://www.virustotal.com/gui/file/e8dc54116761adf47e1ac00e4f38cb9be5470f858816f8feea6831e850f1ec5c/detection
 
 Dernières modifications :
 
