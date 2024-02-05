@@ -179,9 +179,6 @@ public class WIFI extends AppCompatActivity {
         //###################### Fin Thread 1 ######################
 
 
-        LocalHost.start();
-
-
         //###################### Thread 2 ######################
         Thread LocalHost2 = new Thread() {
             public void run() {
@@ -280,7 +277,7 @@ public class WIFI extends AppCompatActivity {
                     }
                     if (Integer.valueOf(rssiTemp) <= -50 && Integer.valueOf(rssiTemp) > -60){
                         if (lang.equals("fr")) {
-                            score = "Qualité : Bon";
+                            score = "Qualité : Bonne";
                         }
                         if (lang.equals("en")) {
                             score = "Quality : Good";
@@ -319,7 +316,7 @@ public class WIFI extends AppCompatActivity {
                     Log.d("testTAG",speed);
 
 
-                    //Mise à jour des éléments dans le Thread principal sinon ça plante
+                    //Mise à jour des éléments de l'analyseur WIFI dans le Thread principal sinon ça plante
                     String finalStr = str;
                     String finalSSID = SSID;
                     String finalStandard = standard;
@@ -355,6 +352,11 @@ public class WIFI extends AppCompatActivity {
         //###################### Fin Thread 2 ######################
 
 
+        //Démarrage Thread 1 (Configuration des interfaces)
+        LocalHost.start();
+
+
+        //Démarrage Thread 2 (Analyseur WIFI)
         run = true;
         LocalHost2.start();
 
@@ -372,7 +374,7 @@ public class WIFI extends AppCompatActivity {
         }
 
 
-        //Affichage des informations sur les interfaces lors du click sur le bouton
+        //Affichage des informations sur les interfaces lors du click sur le bouton des informations de configuration
         //Ouverture
         WIFIButtonInterface.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -427,6 +429,7 @@ public class WIFI extends AppCompatActivity {
 
         //Warnings
         //Définission du contenu de l'avertissement
+        //GPS
         Context context = this;
         LocationManager locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
         boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -439,6 +442,7 @@ public class WIFI extends AppCompatActivity {
                 str = "Please enable location on the device \n\n";
             }
         }
+        //Localisation
         if (checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED | checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
             if (lang.equals("fr")) {
                 str += "Veuillez redémarrer l'application et activer la localisation précise";
