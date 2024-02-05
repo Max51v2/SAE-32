@@ -1,5 +1,3 @@
-L'APK est téléchargeable à cette adresse : https://drive.google.com/file/d/1EcGfwRuWNuqU0WbFpVJuHrXVj5jE-qQN/view?usp=sharing
-
 Dernières modifications :
 
 30/01/2024 : 
