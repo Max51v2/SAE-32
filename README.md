@@ -1,5 +1,10 @@
 Vous pouvez retrouver notre application dans ce répertoire : https://github.com/Max51v2/SAE-32-APP
+
 Dernières modifications :
+
+05/02/2024 :
+Ajout :
+  - Sauvegarde des champs dans IP et VLSM
 
 30/01/2024 : 
 Ajout :
