@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class IP extends AppCompatActivity {
+
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,8 @@ public class IP extends AppCompatActivity {
         TextView IPAvailableAddressBox = findViewById(R.id.IPAvailableAddressBox);
         final EditText IPBoxIP =  (EditText) findViewById(R.id.IPBoxIP);
         final EditText IPBoxMask =  (EditText) findViewById(R.id.IPBoxMask);
+        preferences=getSharedPreferences("Save_IP",MODE_PRIVATE);
+        editor=preferences.edit();
         //____________________________________________
 
 
@@ -69,6 +77,7 @@ public class IP extends AppCompatActivity {
                     if (address.equals("") | mask.equals("")) {
 
                     }
+                    //Lancement du calcul IP
                     else {
                         //Envoi des valeurs dans le layout
                         IPCalculator ip1;
@@ -82,9 +91,23 @@ public class IP extends AppCompatActivity {
                         IPBroadcastAddressBox.setText(ip1.BroadcastAddress());
                         IPRangeBox.setText(ip1.FirstAddress() + " - " + ip1.LastAddress());
                         IPAvailableAddressBox.setText(ip1.NumberOfAddress());
+
+                        //Sauvegarde des champs : Adresse réseau, Adresse broadcast, Plage et Adresses disponibles
+                        editor.putString("IPNetworkAddressBox",IPNetworkAddressBox.getText().toString());
+                        editor.putString("IPBroadcastAddressBox",IPBroadcastAddressBox.getText().toString());
+                        editor.putString("IPRangeBox",IPRangeBox.getText().toString());
+                        editor.putString("IPAvailableAddressBox",IPAvailableAddressBox.getText().toString());
+                        editor.commit();
                     }
                 }
             }
         });
+
+
+        //Restauration Sauvegarde
+        IPNetworkAddressBox.setText(preferences.getString("IPNetworkAddressBox", ""));
+        IPBroadcastAddressBox.setText(preferences.getString("IPBroadcastAddressBox", ""));
+        IPRangeBox.setText(preferences.getString("IPRangeBox", ""));
+        IPAvailableAddressBox.setText(preferences.getString("IPAvailableAddressBox", ""));
     }
 }

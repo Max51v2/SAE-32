@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -13,6 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class VLSM extends AppCompatActivity {
+
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,8 @@ public class VLSM extends AppCompatActivity {
         final EditText VLSMBoxIP =  (EditText) findViewById(R.id.VLSMBoxIP);
         final EditText VLSMBoxMask =  (EditText) findViewById(R.id.VLSMBoxMask);
         final EditText VLSMBoxSize =  (EditText) findViewById(R.id.VLSMBoxSize);
+        preferences=getSharedPreferences("Save_VLSM",MODE_PRIVATE);
+        editor=preferences.edit();
         //____________________________________________
 
 
@@ -36,6 +44,21 @@ public class VLSM extends AppCompatActivity {
                 startActivity(new Intent(VLSM.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
+
+
+        //On récupère la langue utilisée
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.getLocales();
+        String lang = "";
+        if (configuration.getLocales().toString().contains("[en")) {
+            lang = "en";
+        }
+        if (configuration.getLocales().toString().contains("[fr")) {
+            lang = "fr";
+        }
+        String finalLang = lang;
+
 
         VLSMButtonIP.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -67,22 +90,35 @@ public class VLSM extends AppCompatActivity {
                 if (address.equals("") | mask.equals("") | subnetlist.equals("")){
 
                 }
+                //Lancement du calcul des adresses VLSM
                 else {
-                    Resources resources = getResources();
-                    Configuration configuration = resources.getConfiguration();
-                    configuration.getLocales();
-                    String lang = "";
-                    if (configuration.getLocales().toString().contains("[en")) {
-                        lang = "en";
+                    //On execute la méthode pour les 2 langues au cas ou on change la langue entre 2 executions
+                    VLSMCalculator VLSMEn = new VLSMCalculator(address, mask, subnetlist, "en");
+                    VLSMCalculator VLSMFr = new VLSMCalculator(address, mask, subnetlist, "fr");
+
+                    //On affiche la langue utilisée
+                    if (finalLang.equals("en")){
+                        VLSMTextAnswer.setText(VLSMEn.getResult());
                     }
-                    if (configuration.getLocales().toString().contains("[fr")) {
-                        lang = "fr";
+                    if (finalLang.equals("fr")) {
+                        VLSMTextAnswer.setText(VLSMFr.getResult());
                     }
 
-                    VLSMCalculator VLSM1 = new VLSMCalculator(address, mask, subnetlist, lang);
-                    VLSMTextAnswer.setText(VLSM1.getResult());
+                    //Sauvegarde du champ VLSMTextAnswer en englais et français
+                    editor.putString("VLSMTextAnswerFr",VLSMFr.getResult());
+                    editor.putString("VLSMTextAnswerEn",VLSMEn.getResult());
+                    editor.commit();
                 }
             }
         });
+
+        //Restauration Sauvegarde
+        //On affiche la langue utilisée
+        if (finalLang.equals("en")){
+            VLSMTextAnswer.setText(preferences.getString("VLSMTextAnswerEn", ""));
+        }
+        if (finalLang.equals("fr")) {
+            VLSMTextAnswer.setText(preferences.getString("VLSMTextAnswerFr", ""));
+        }
     }
 }
