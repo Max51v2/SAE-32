@@ -2,6 +2,15 @@ Vous pouvez retrouver notre application dans ce répertoire : https://github.com
 
 Dernières modifications :
 
+06/02/2024 :
+Ajout :
+  - Lien cliquable (Adresses mail) dans Information
+  - Sauvegarde de la langue souhaitée
+  - Suppression des animations de transition pour les retours en arrière
+Correction de bugs :
+  - fermeture des activités lorsque l'on reviens dans Main
+  - Revenir dans Main ne relance pas Main
+
 05/02/2024 :
 Ajout :
   - Sauvegarde des champs dans IP et VLSM
