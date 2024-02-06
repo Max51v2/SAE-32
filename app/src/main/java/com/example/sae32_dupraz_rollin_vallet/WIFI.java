@@ -332,7 +332,6 @@ public class WIFI extends AppCompatActivity {
                     if (lang.equals("en")) {
                         speed = "Tx/Rx : "+Tx+"/"+Rx;
                     }
-                    Log.d("testTAG",speed);
 
 
                     //Mise à jour des éléments de l'analyseur WIFI dans le Thread principal
