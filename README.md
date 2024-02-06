@@ -7,6 +7,8 @@ Ajout :
   - Lien cliquable (Adresses mail) dans Information
   - Sauvegarde de la langue souhaitée
   - Suppression des animations de transition pour les retours en arrière
+  - Possibilité de fermer l'avertissement dans WIFI
+  - Information sur le rôle de la localisation dans WIFI
 Correction de bugs :
   - fermeture des activités lorsque l'on reviens dans Main
   - Revenir dans Main ne relance pas Main
