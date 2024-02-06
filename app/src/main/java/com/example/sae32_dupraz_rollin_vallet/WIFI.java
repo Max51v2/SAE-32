@@ -32,6 +32,14 @@ public class WIFI extends AppCompatActivity {
     }
 
 
+    //Retour en arrière
+    public void onBackPressed(){
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +58,13 @@ public class WIFI extends AppCompatActivity {
         View WIFIWarningBackground = findViewById(R.id.WIFIWarningBackground);
         View WIFIWarningLogo = findViewById(R.id.WIFIWarningLogo);
         TextView WIFIWarningText = findViewById(R.id.WIFIWarningText);
+        View WIFIButtonWarningClose = findViewById(R.id.WIFIButtonWarningClose);
         TextView WIFITextStatus = findViewById(R.id.WIFITextStatus);
         TextView WIFITextStandard = findViewById(R.id.WIFITextStandard);
         TextView WIFITextRSSI = findViewById(R.id.WIFITextRSSI);
         TextView WIFITextQuality = findViewById(R.id.WIFITextQuality);
         TextView WIFITextTxRx = findViewById(R.id.WIFITextTxRx);
+        TextView WIFITextWarningInfo = findViewById(R.id.WIFITextWarningInfo);
         //____________________________________________
 
 
@@ -62,7 +72,8 @@ public class WIFI extends AppCompatActivity {
         WIFIBannerButtonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 run = false;
-                startActivity(new Intent(WIFI.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                finish();
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -477,6 +488,8 @@ public class WIFI extends AppCompatActivity {
             WIFITextRSSI.setVisibility(View.INVISIBLE);
             WIFITextQuality.setVisibility(View.INVISIBLE);
             WIFITextTxRx.setVisibility(View.INVISIBLE);
+            WIFIButtonWarningClose.setVisibility(View.VISIBLE);
+            WIFITextWarningInfo.setVisibility(View.VISIBLE);
         }
 
         //Masqué
@@ -493,7 +506,30 @@ public class WIFI extends AppCompatActivity {
             WIFITextQuality.setVisibility(View.INVISIBLE);
             WIFITextQuality.setVisibility(View.VISIBLE);
             WIFITextTxRx.setVisibility(View.VISIBLE);
+            WIFIButtonWarningClose.setVisibility(View.INVISIBLE);
+            WIFITextWarningInfo.setVisibility(View.INVISIBLE);
         }
+
+
+        //Fermeture de l'avertissement
+        WIFIButtonWarningClose.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                WIFIWarningBackground.setVisibility(View.INVISIBLE);
+                WIFIButtonInterface.setVisibility(View.VISIBLE);
+                WIFITextInterface.setVisibility(View.VISIBLE);
+                WIFITextSSID.setVisibility(View.VISIBLE);
+                WIFIWarningLogo.setVisibility(View.INVISIBLE);
+                WIFIWarningText.setVisibility(View.INVISIBLE);
+                WIFITextStatus.setVisibility(View.VISIBLE);
+                WIFITextStandard.setVisibility(View.VISIBLE);
+                WIFITextRSSI.setVisibility(View.VISIBLE);
+                WIFITextQuality.setVisibility(View.INVISIBLE);
+                WIFITextQuality.setVisibility(View.VISIBLE);
+                WIFITextTxRx.setVisibility(View.VISIBLE);
+                WIFIButtonWarningClose.setVisibility(View.INVISIBLE);
+                WIFITextWarningInfo.setVisibility(View.INVISIBLE);
+            }
+        });
 
 
     }

@@ -18,6 +18,14 @@ public class IP extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
 
+    //Retour en arrière
+    public void onBackPressed(){
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +49,8 @@ public class IP extends AppCompatActivity {
         //Changement d'activité (Main)
         MainBannerButtonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(IP.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                finish();
+                overridePendingTransition(0, 0);
             }
         });
 

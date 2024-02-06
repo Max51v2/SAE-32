@@ -11,9 +11,10 @@
     <string name="adresse_de_diffusion">Broadcast address :</string>
     <string name="plage">Range :</string>
     <string name="nombre_d_adresses">Number of address :</string>
-    <string name="ParpaingInformations">This application is a study project made in pairs, the goal is to develop an Android application          using Android Studio. It takes place during our second year of the Networks and Telecoms BUT. \n\n Our application          allows you to obtain all the useful information on an IP address (broadcast address, mask and network address,         address range and number of available addresses). It also allows you to find the number of possible sub-networks          for a given block of network addresses. Finally, it provides you with a wifi analyser. \n\n For information, problems          or anything else, don\'t hesitate \n maxime.vallet1@etu.univ-lorraine.fr \n zian.dupraz-rollin8@etu.univ-lorraine.fr</string>
+    <string name="ParpaingInformations">This application is a study project made in pairs, the goal is to develop an Android application          using Android Studio. It takes place during our second year of the Networks and Telecoms BUT. \n\n Our application          allows you to obtain all the useful information on an IP address (broadcast address, mask and network address,         address range and number of available addresses). It also allows you to find the number of possible sub-networks          for a given block of network addresses. Finally, it provides you with a wifi analyser. \n\n For information, problems          or anything else, don\'t hesitate :</string>
     <string name="taille">Size :</string>
     <string name="SR_list">(SN1/SN2/.../SNn)</string>
     <string name="configuration_interfaces">Interfaces configuration</string>
     <string name="indications_interfaces">Hint about interfaces : \n -Dummy : Similar to Loopback \n -Wlan : WI-FI connection \n -Rmnet : cellulare connection \n -Loopback : virtual interface that is always on</string>
+    <string name="warning_text">Note : some functionalities won\'t work if location services are disabled</string>
 </resources>

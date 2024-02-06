@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         //____________________________________________
 
 
-        //Ouverture du bandeau latéral
+        //Bandeau latéral
+        //Ouverture
         MainBannerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 MainBannerButtonCross.setVisibility(View.VISIBLE);
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Fermeture du bandeau latéral
+        //Fermeture
         MainBannerButtonCross.setOnClickListener(new View.OnClickListener(){
             public void onClick (View v){
                 MainBannerButtonCross.setVisibility(View.INVISIBLE);
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //Permissions
+        //Requête des permissions pour la localisation
         requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
 
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         MainButtonInfo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Informations.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -92,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         MainButtonIP.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, IP.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         MainButtonVLSM.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, VLSM.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -108,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         MainButtonWIFI.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, WIFI.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -133,8 +138,9 @@ public class MainActivity extends AppCompatActivity {
                 getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
 
 
-                //Sauvegarde
+                //Sauvegarde de la langue utilisée après le changement
                 editor.putString("LangAct",lang);
+                //Recreate permet de savoir si il y'a eu un changement de langue depuis le dernier démarrage de l'application
                 editor.putString("Recreate","true");
                 editor.commit();
 
@@ -148,11 +154,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //Application de la langue choisie
-        //Comptage du nombre d'itérations
+        //Application de la langue choisie au démarrage
+        //Comptage du nombre d'itérations (démarrage de l'application depuis l'installation (utile pour la 1ere initialisation))
         int compteur;
         Boolean recreate;
-        //Enregistrement de la langue par défaut
+
+        //Enregistrement de la langue actuelle
         Resources resources = getResources();
         Configuration configuration = resources.getConfiguration();
         configuration.getLocales();
@@ -164,15 +171,20 @@ public class MainActivity extends AppCompatActivity {
             langAct = "fr";
         }
 
+        //Première itération
         if(preferences.getString("LangCompteur", "").equals("")){
             compteur = 1;
-            recreate = true;
+            recreate = false;
 
+            //Sauvegarde language utilisé
             editor.putString("LangAct",langAct);
             editor.commit();
         }
+        //Les autres itérations
         else {
             compteur = Integer.parseInt(preferences.getString("LangCompteur", "")) + 1;
+
+            //Si le language a été modifiée via le boutton, on met recreate à true afin d'actualiser la page car elle se crée dans le language utilisé précédement
             if (preferences.getString("Recreate", "").equals("true")){
                 editor.putString("Recreate","false");
                 editor.commit();
@@ -182,11 +194,9 @@ public class MainActivity extends AppCompatActivity {
                 recreate = false;
             }
 
-            //Actualisation si l'app redémarre
+            //Actualisation de la page si le language utilisé ne correspond pas à celui dans lequel l'application était à l'itération précédente
             if (!langAct.equals(preferences.getString("LangAct", ""))){
                 recreate = true;
-                Log.d("testTAG", langAct);
-                Log.d("testTAG", langAct);
             }
         }
 
@@ -198,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Changement de langue
         configuration.getLocales();
-
         if (preferences.getString("LangAct", "").equals("fr")){
             configuration.setLocale(localeFr);
         } else if (preferences.getString("LangAct", "").equals("en")) {
