@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -15,8 +16,16 @@ import android.widget.Button;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    //_____________Variables/Objets_______________
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
     Button boutton1;
     boolean AltBannerVisible = false;
+    //____________________________________________
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         View MainButtonWIFI = findViewById(R.id.MainButtonWIFI);
         View MainButtonLang = findViewById(R.id.MainButtonLang);
         View MainButtonInfo = findViewById(R.id.MainButtonInfo);
+        preferences=getSharedPreferences("Save_Main",MODE_PRIVATE);
+        editor=preferences.edit();
         //____________________________________________
 
 
@@ -109,22 +120,98 @@ public class MainActivity extends AppCompatActivity {
                 Resources resources = getResources();
                 Configuration configuration = resources.getConfiguration();
                 configuration.getLocales();
+                String lang = "";
 
-                Log.d("tagtest", configuration.getLocales().toString());
                 if (configuration.getLocales().toString().contains("[en")){
                     configuration.setLocale(localeFr);
+                    lang = "fr";
                 } else if (configuration.getLocales().toString().contains("[fr")) {
                     configuration.setLocale(localeEn);
+                    lang = "en";
                 }
 
                 getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
 
+
+                //Sauvegarde
+                editor.putString("LangAct",lang);
+                editor.putString("Recreate","true");
+                editor.commit();
+
+
+                //Actualisation de l'activité
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
             }
         });
+
+
+        //Application de la langue choisie
+        //Comptage du nombre d'itérations
+        int compteur;
+        Boolean recreate;
+        //Enregistrement de la langue par défaut
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.getLocales();
+        String langAct = "";
+
+        if (configuration.getLocales().toString().contains("[en")){
+            langAct = "en";
+        } else if (configuration.getLocales().toString().contains("[fr")) {
+            langAct = "fr";
+        }
+
+        if(preferences.getString("LangCompteur", "").equals("")){
+            compteur = 1;
+            recreate = true;
+
+            editor.putString("LangAct",langAct);
+            editor.commit();
+        }
+        else {
+            compteur = Integer.parseInt(preferences.getString("LangCompteur", "")) + 1;
+            if (preferences.getString("Recreate", "").equals("true")){
+                editor.putString("Recreate","false");
+                editor.commit();
+                recreate = true;
+            }
+            else {
+                recreate = false;
+            }
+
+            //Actualisation si l'app redémarre
+            if (!langAct.equals(preferences.getString("LangAct", ""))){
+                recreate = true;
+                Log.d("testTAG", langAct);
+                Log.d("testTAG", langAct);
+            }
+        }
+
+
+        //Sauvegarde compteur
+        editor.putString("LangCompteur", String.valueOf(compteur));
+        editor.commit();
+
+
+        //Changement de langue
+        configuration.getLocales();
+
+        if (preferences.getString("LangAct", "").equals("fr")){
+            configuration.setLocale(localeFr);
+        } else if (preferences.getString("LangAct", "").equals("en")) {
+            configuration.setLocale(localeEn);
+        }
+
+
+        //Actualisation de l'activité
+        if (recreate) {
+            recreate = false;
+            recreate();
+        }
+
 
     }
 

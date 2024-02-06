@@ -60,9 +60,10 @@ public class VLSM extends AppCompatActivity {
         String finalLang = lang;
 
 
+        //Calcul VLSM
         VLSMButtonIP.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Récupération du champ IP
+                //Récupération des champs : IP, masque et Sous réseaux
                 String address = String.valueOf(VLSMBoxIP.getText());
                 String mask = String.valueOf(VLSMBoxMask.getText());
                 String subnetlist = String.valueOf(VLSMBoxSize.getText());

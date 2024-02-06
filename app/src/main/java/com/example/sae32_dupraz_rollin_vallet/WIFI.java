@@ -25,7 +25,7 @@ public class WIFI extends AppCompatActivity {
     boolean run = false;
 
 
-    //On arrete la boucle quand on met l'app en pause
+    //On arrete la boucle quand on met l'application en pause
     protected void onPause(){
         super.onPause();
         run = false;
@@ -73,20 +73,21 @@ public class WIFI extends AppCompatActivity {
         final String[] resultEn = {""};
         Thread LocalHost = new Thread() {
             public void run() {
+                //Récupération des informations sur les interfaces
                 try {
                     Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
                     ArrayList<String> interfaceName = new ArrayList<>();
                     ArrayList<String> interfaceAddress = new ArrayList<>();
                     ArrayList<String> interfacemask = new ArrayList<>();
-                    ArrayList<String> interfaceMAC = new ArrayList<>();
+                    //ArrayList<String> interfaceMAC = new ArrayList<>();
                     ArrayList<Integer> size = new ArrayList<>();
                     String address;
 
                     while (interfaces.hasMoreElements()) {
                         NetworkInterface networkInterface = interfaces.nextElement();
-
-                        //nom interfaces
+                        //Nom interfaces
                         interfaceName.add(networkInterface.getName().toString());
+
 
                         //adresses interfaces
                         address = networkInterface.getInterfaceAddresses().get(0).toString();
@@ -98,16 +99,19 @@ public class WIFI extends AppCompatActivity {
                         }
                         interfaceAddress.add(address);
 
+
                         //masque
                         address = networkInterface.getInterfaceAddresses().get(0).toString();
                         address = address.substring(address.indexOf("/") + 1);
                         address = address.substring(address.indexOf("/") + 1, address.indexOf("[") - 1);
                         interfacemask.add(address);
 
+
                         //@MAC (Nécéssite d'être ROOT)
                         //address = Arrays.toString(networkInterface.getHardwareAddress());
                         //Log.d("test", Arrays.toString(networkInterface.getHardwareAddress()));
                         //interfaceMAC.add(address);
+
 
                         //Seconde adresse
                         if (networkInterface.getInterfaceAddresses().size() > 1) {
@@ -121,6 +125,7 @@ public class WIFI extends AppCompatActivity {
                             }
                             interfaceAddress.add(address);
 
+
                             //masque
                             address = networkInterface.getInterfaceAddresses().get(1).toString();
                             address = address.substring(address.indexOf("/") + 1);
@@ -128,24 +133,27 @@ public class WIFI extends AppCompatActivity {
                             interfacemask.add(address);
                             interfaceName.add("placeholder");
 
+
                             //@MAC
                             //address = Arrays.toString(networkInterface.getHardwareAddress());
                             //interfaceMAC.add(address);
 
                             size.add(2);
-                        } else {
+                        }
+                        else {
                             size.add(1);
                         }
                     }
 
 
-                    //Impression des resultats
+                    //On compte le nombre d'adresses
                     int iMax = 0;
                     for (int i = 0; i < size.size(); i++) {
                         iMax += size.get(i);
                     }
 
 
+                    //Récupération des résultats en englais et français
                     for (int i = 0; i < iMax; i++) {
                         if (interfaceName.get(i).contains("placeholder")) {
                             resultFr[0] += "Adresse n°2 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
@@ -316,7 +324,7 @@ public class WIFI extends AppCompatActivity {
                     Log.d("testTAG",speed);
 
 
-                    //Mise à jour des éléments de l'analyseur WIFI dans le Thread principal sinon ça plante
+                    //Mise à jour des éléments de l'analyseur WIFI dans le Thread principal
                     String finalStr = str;
                     String finalSSID = SSID;
                     String finalStandard = standard;
@@ -442,6 +450,7 @@ public class WIFI extends AppCompatActivity {
                 str = "Please enable location on the device \n\n";
             }
         }
+
         //Localisation
         if (checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED | checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
             if (lang.equals("fr")) {
@@ -469,6 +478,7 @@ public class WIFI extends AppCompatActivity {
             WIFITextQuality.setVisibility(View.INVISIBLE);
             WIFITextTxRx.setVisibility(View.INVISIBLE);
         }
+
         //Masqué
         else {
             WIFIWarningBackground.setVisibility(View.INVISIBLE);
