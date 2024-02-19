@@ -2,8 +2,6 @@ package com.example.sae32_dupraz_rollin_vallet;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -12,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class VLSM extends AppCompatActivity {
 
@@ -83,16 +84,27 @@ public class VLSM extends AppCompatActivity {
                 VLSMBoxMask.requestFocus();
                 VLSMBoxSize.requestFocus();
 
-                //Retrait des espaces
-                while(address.contains(" ") | mask.contains(" ") | mask.contains(" ")) {
-                    if (address.contains(" ")) {
-                        address = address.substring(0, address.indexOf(" ")) + address.substring(address.indexOf(" ") + 1, address.length());
+                //Retrait des caratères interdits "a","b","c","d","e","f","g","h","i","j"
+                ArrayList ListAddress = new ArrayList<>(Arrays.asList("/","-"," "));
+                ArrayList ListMask = new ArrayList<>(Arrays.asList(":","-"," "));
+                ArrayList ListSubnets = new ArrayList<>(Arrays.asList(":","-","."," "));
+
+                //Champ IP
+                for (int c=0; c < ListAddress.size(); c++) {
+                    while (address.contains(ListAddress.get(c).toString())) {
+                        address = address.substring(0, address.indexOf(ListAddress.get(c).toString())) + address.substring(address.indexOf(ListAddress.get(c).toString()) + 1, address.length());
                     }
-                    if (mask.contains(" ")) {
-                        mask = mask.substring(0, mask.indexOf(" ")) + mask.substring(mask.indexOf(" ") + 1, mask.length());
+                }
+                //Champ masque
+                for (int c=0; c < ListMask.size(); c++) {
+                    while (mask.contains(ListMask.get(c).toString())) {
+                        mask = mask.substring(0, mask.indexOf(ListMask.get(c).toString())) + mask.substring(mask.indexOf(ListMask.get(c).toString()) + 1, mask.length());
                     }
-                    if (mask.contains(" ")) {
-                        subnetlist = subnetlist.substring(0, subnetlist.indexOf(" ")) + subnetlist.substring(subnetlist.indexOf(" ") + 1, subnetlist.length());
+                }
+                //Champ masque
+                for (int c=0; c < ListSubnets.size(); c++) {
+                    while (subnetlist.contains(ListSubnets.get(c).toString())) {
+                        subnetlist = subnetlist.substring(0, subnetlist.indexOf(ListSubnets.get(c).toString())) + subnetlist.substring(subnetlist.indexOf(ListSubnets.get(c).toString()) + 1, subnetlist.length());
                     }
                 }
 

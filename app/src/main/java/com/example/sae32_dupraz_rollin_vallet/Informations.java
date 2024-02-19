@@ -2,10 +2,8 @@ package com.example.sae32_dupraz_rollin_vallet;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
-import android.text.method.MovementMethod;
 import android.view.View;
 import android.widget.TextView;
 

@@ -2,9 +2,7 @@ package com.example.sae32_dupraz_rollin_vallet;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;

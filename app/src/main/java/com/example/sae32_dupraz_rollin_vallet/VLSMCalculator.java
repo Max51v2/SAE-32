@@ -1,7 +1,5 @@
 package com.example.sae32_dupraz_rollin_vallet;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;

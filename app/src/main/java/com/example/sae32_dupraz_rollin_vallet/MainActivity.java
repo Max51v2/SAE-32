@@ -1,9 +1,7 @@
 package com.example.sae32_dupraz_rollin_vallet;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -146,10 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //Actualisation de l'activité
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-                finish();
+                recreate();
             }
         });
 
