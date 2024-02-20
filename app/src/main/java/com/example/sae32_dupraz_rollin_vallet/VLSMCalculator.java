@@ -162,7 +162,7 @@ public class VLSMCalculator extends IPCalculator {
                 result = "Erreur : Il n'y a pas assez d'adresses dans le bloc";
             }
             if (this.lang == "en"){
-                result = "Error : There isn't enough addresses in this bloc";
+                result = "Error : There isn't enough addresses in this block";
             }
         }
         else {
