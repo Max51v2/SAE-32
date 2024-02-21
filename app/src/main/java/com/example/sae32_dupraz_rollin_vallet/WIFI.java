@@ -3,6 +3,7 @@ package com.example.sae32_dupraz_rollin_vallet;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -17,10 +18,13 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Locale;
 
 public class WIFI extends AppCompatActivity {
 
     boolean run = false;
+    SharedPreferences preferences2;
+    SharedPreferences.Editor editor;
 
 
     //On arrete la boucle quand on met l'application en pause
@@ -63,6 +67,8 @@ public class WIFI extends AppCompatActivity {
         TextView WIFITextQuality = findViewById(R.id.WIFITextQuality);
         TextView WIFITextTxRx = findViewById(R.id.WIFITextTxRx);
         TextView WIFITextWarningInfo = findViewById(R.id.WIFITextWarningInfo);
+        preferences2=getSharedPreferences("Save_Main",MODE_PRIVATE);
+        editor=preferences2.edit();
         //____________________________________________
 
 
@@ -387,6 +393,21 @@ public class WIFI extends AppCompatActivity {
         }
         if (configuration.getLocales().toString().contains("[fr")) {
             lang = "fr";
+        }
+
+
+        //Changement de langue si l'activité est reconstruite (changement d'orientation ou dimensions)
+        //Enregistrement de la langue actuelle
+        Locale localeEn = new Locale("en");
+        Locale localeFr = new Locale("fr");
+
+        //Changement de la langue
+        if (preferences2.getString("LangAct", "").equals("fr") && lang.equals("en")){
+            configuration.setLocale(localeFr);
+            recreate();
+        } else if (preferences2.getString("LangAct", "").equals("en") && lang.equals("fr")) {
+            configuration.setLocale(localeEn);
+            recreate();
         }
 
 

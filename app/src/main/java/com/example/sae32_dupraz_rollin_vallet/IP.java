@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +15,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Locale;
 
 public class IP extends AppCompatActivity {
 
 
     SharedPreferences preferences;
+    SharedPreferences preferences2;
     SharedPreferences.Editor editor;
+
 
 
     //Retour en arrière
@@ -46,6 +51,8 @@ public class IP extends AppCompatActivity {
         final EditText IPBoxMask =  (EditText) findViewById(R.id.IPBoxMask);
         preferences=getSharedPreferences("Save_IP",MODE_PRIVATE);
         editor=preferences.edit();
+        preferences2=getSharedPreferences("Save_Main",MODE_PRIVATE);
+        editor=preferences2.edit();
         //____________________________________________
 
 
@@ -58,6 +65,32 @@ public class IP extends AppCompatActivity {
         });
 
 
+        //Changement de langue si l'activité est reconstruite (changement d'orientation ou dimensions)
+        //Enregistrement de la langue actuelle
+        Locale localeEn = new Locale("en");
+        Locale localeFr = new Locale("fr");
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.getLocales();
+        String langAct = "";
+
+        if (configuration.getLocales().toString().contains("[en")){
+            langAct = "en";
+        } else if (configuration.getLocales().toString().contains("[fr")) {
+            langAct = "fr";
+        }
+
+        //Changement de la langue
+        if (preferences2.getString("LangAct", "").equals("fr") && langAct.equals("en")){
+            configuration.setLocale(localeFr);
+            recreate();
+        } else if (preferences2.getString("LangAct", "").equals("en") && langAct.equals("fr")) {
+            configuration.setLocale(localeEn);
+            recreate();
+        }
+
+
+        //Calculs IP
         IPButtonIP.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             public void onClick(View v) {

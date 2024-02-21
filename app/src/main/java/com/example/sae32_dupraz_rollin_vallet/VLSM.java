@@ -13,11 +13,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 public class VLSM extends AppCompatActivity {
 
 
     SharedPreferences preferences;
+    SharedPreferences preferences2;
     SharedPreferences.Editor editor;
 
 
@@ -44,6 +46,8 @@ public class VLSM extends AppCompatActivity {
         final EditText VLSMBoxSize =  (EditText) findViewById(R.id.VLSMBoxSize);
         preferences=getSharedPreferences("Save_VLSM",MODE_PRIVATE);
         editor=preferences.edit();
+        preferences2=getSharedPreferences("Save_Main",MODE_PRIVATE);
+        editor=preferences2.edit();
         //____________________________________________
 
 
@@ -68,6 +72,20 @@ public class VLSM extends AppCompatActivity {
             lang = "fr";
         }
         String finalLang = lang;
+
+
+        //Changement de langue si l'activité est reconstruite (changement d'orientation ou dimensions)
+        Locale localeEn = new Locale("en");
+        Locale localeFr = new Locale("fr");
+
+        //Changement de la langue
+        if (preferences2.getString("LangAct", "").equals("fr") && lang.equals("en")){
+            configuration.setLocale(localeFr);
+            recreate();
+        } else if (preferences2.getString("LangAct", "").equals("en") && lang.equals("fr")) {
+            configuration.setLocale(localeEn);
+            recreate();
+        }
 
 
         //Calcul VLSM
