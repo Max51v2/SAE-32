@@ -401,7 +401,7 @@ public class WIFI extends AppCompatActivity {
         Locale localeEn = new Locale("en");
         Locale localeFr = new Locale("fr");
 
-        //Changement de la langue
+        //Changement de la langue utilisée
         if (preferences2.getString("LangAct", "").equals("fr") && lang.equals("en")){
             configuration.setLocale(localeFr);
             recreate();

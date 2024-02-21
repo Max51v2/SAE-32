@@ -80,7 +80,7 @@ public class IP extends AppCompatActivity {
             langAct = "fr";
         }
 
-        //Changement de la langue
+        //Changement de la langue utilisée
         if (preferences2.getString("LangAct", "").equals("fr") && langAct.equals("en")){
             configuration.setLocale(localeFr);
             recreate();
