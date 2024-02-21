@@ -165,26 +165,26 @@ public class WIFI extends AppCompatActivity {
                     //Récupération des résultats en englais et français
                     for (int i = 0; i < iMax; i++) {
                         if (interfaceName.get(i).contains("placeholder")) {
-                            resultFr[0] += "Adresse n°2 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
+                            resultFr[0] += "Adresse n°2 : \n=> " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
                         } else {
                             resultFr[0] += "Interface : " + interfaceName.get(i).toString() + " \n";
                             //resultFr[0] += "Adresse MAC : " + interfaceMAC.get(i).toString() + " \n";
                             if (interfaceName.get(i + 1).contains("placeholder") && i < iMax - 1) {
-                                resultFr[0] += "Adresse n°1 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n";
+                                resultFr[0] += "Adresse n°1 : \n=> " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n";
                             } else {
-                                resultFr[0] += "Adresse : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
+                                resultFr[0] += "Adresse : \n=> " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
                             }
                         }
 
                         if (interfaceName.get(i).contains("placeholder")) {
-                            resultEn[0] += "Address n°2 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
+                            resultEn[0] += "Address n°2 : \n=> " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
                         } else {
                             resultEn[0] += "Interface : " + interfaceName.get(i).toString() + " \n";
                             //resultEn[0] += "MAC Address : " + interfaceMAC.get(i).toString() + " \n";
                             if (interfaceName.get(i + 1).contains("placeholder") && i < iMax - 1) {
-                                resultEn[0] += "Address n°1 : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n";
+                                resultEn[0] += "Address n°1 : \n=> " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n";
                             } else {
-                                resultEn[0] += "Address : " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
+                                resultEn[0] += "Address : \n=> " + interfaceAddress.get(i).toString() + "/" + interfacemask.get(i).toString() + " \n \n";
                             }
                         }
                     }
