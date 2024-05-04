@@ -48,9 +48,7 @@ public class IP extends AppCompatActivity {
         final EditText IPBoxIP =  (EditText) findViewById(R.id.IPBoxIP);
         final EditText IPBoxMask =  (EditText) findViewById(R.id.IPBoxMask);
         preferences=getSharedPreferences("Save_IP",MODE_PRIVATE);
-        editor=preferences.edit();
         preferences2=getSharedPreferences("Save_Main",MODE_PRIVATE);
-        editor=preferences2.edit();
         //____________________________________________
 
 
@@ -143,6 +141,7 @@ public class IP extends AppCompatActivity {
                         IPAvailableAddressBox.setText(ip1.NumberOfAddress());
 
                         //Sauvegarde des champs : Adresse réseau, Adresse broadcast, Plage et Adresses disponibles
+                        editor=preferences.edit();
                         editor.putString("IPNetworkAddressBox",IPNetworkAddressBox.getText().toString());
                         editor.putString("IPBroadcastAddressBox",IPBroadcastAddressBox.getText().toString());
                         editor.putString("IPRangeBox",IPRangeBox.getText().toString());

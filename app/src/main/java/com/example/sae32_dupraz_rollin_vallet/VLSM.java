@@ -45,9 +45,7 @@ public class VLSM extends AppCompatActivity {
         final EditText VLSMBoxMask =  (EditText) findViewById(R.id.VLSMBoxMask);
         final EditText VLSMBoxSize =  (EditText) findViewById(R.id.VLSMBoxSize);
         preferences=getSharedPreferences("Save_VLSM",MODE_PRIVATE);
-        editor=preferences.edit();
         preferences2=getSharedPreferences("Save_Main",MODE_PRIVATE);
-        editor=preferences2.edit();
         //____________________________________________
 
 
@@ -145,6 +143,7 @@ public class VLSM extends AppCompatActivity {
                     }
 
                     //Sauvegarde du champ VLSMTextAnswer en englais et français
+                    editor=preferences.edit();
                     editor.putString("VLSMTextAnswerFr",VLSMFr.getResult());
                     editor.putString("VLSMTextAnswerEn",VLSMEn.getResult());
                     editor.commit();
