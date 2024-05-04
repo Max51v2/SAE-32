@@ -1,7 +1,5 @@
 package com.example.sae32_dupraz_rollin_vallet;
 
-import android.util.Log;
-
 public class IPCalculator {
     private String address;
     private String mask;

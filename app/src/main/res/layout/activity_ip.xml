@@ -23,7 +23,6 @@
 
 
     <TextView
-        android:id="@+id/IPBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/theme"
@@ -64,7 +63,7 @@
         android:textSize="18dp"
         android:textColor="@color/black"
         android:layout_marginTop="25dp"
-        android:hint="X.X.X.X"
+        android:hint="@string/x_x_x_x"
         android:inputType="date"
         android:layout_marginEnd="100dp"
         app:layout_constraintTop_toTopOf="@id/IPTextIP"
@@ -92,7 +91,7 @@
         android:text=""
         android:textSize="18dp"
         android:inputType="datetime"
-        android:hint="X.X.X.X | X | /X"
+        android:hint="@string/Mask_hint"
         android:textColor="@color/black"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="100dp"

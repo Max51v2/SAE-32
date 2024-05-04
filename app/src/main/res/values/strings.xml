@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Subnet Explorer</string>
-    <string name="TitreMain" translatable="false">Placeholder</string>
     <string name="calculateur_ip">Calculateur d\'IP</string>
-    <string name="filler" translatable="false">filler</string>
     <string name="calculateur_vlsm">Calculateur VLSM</string>
     <string name="analyseur_wi_fi">Analyseur WI-FI</string>
     <string name="langage">Langage : FR</string>
@@ -10,7 +8,6 @@
     <string name="adresse_ip">Adresse IP :</string>
     <string name="envoi">Envoi</string>
     <string name="masque_suffixe">Masque :</string>
-    <string name="placeholder" translatable="false">Placeholder</string>
     <string name="adresse_reseau">Adresse réseau :</string>
     <string name="adresse_de_diffusion">Adresse de diffusion :</string>
     <string name="plage">Plage :</string>
@@ -21,8 +18,10 @@
     <string name="SR_list">(SR1/SR2/.../SRn)</string>
     <string name="configuration_interfaces">Configuration interfaces</string>
     <string name="indications_interfaces">Indications sur les interfaces : \n -Dummy : similaire à l\'interface de Loopback \n -Wlan : connexion WI-FI \n -Rmnet : connexion cellulaire \n -Loopback : interface virtuelle constament activée</string>
-    <string name="ssid" translatable="false">SSID :</string>
     <string name="mail1" translatable="false"><a href="mailto:max.vallet@outlook.fr">max.vallet@outlook.fr</a></string>
     <string name="mail2" translatable="false"><a href="mailto:zian.dupraz-rollin8@etu.univ-lorraine.fr">zian.dupraz-rollin8@etu.univ-lorraine.fr</a></string>
     <string name="warning_text">Note : certaines fonctionnalités peuvent dysfonctionner si les services de localisation sont désactivés</string>
+    <string name="x_x_x_x" translatable="false">X.X.X.X</string>
+    <string name="Mask_hint" translatable="false">X.X.X.X | X | /X</string>
+    <string name="vlsm" translatable="false">VLSM</string>
 </resources>

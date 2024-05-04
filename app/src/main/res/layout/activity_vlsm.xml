@@ -22,11 +22,10 @@
         tools:ignore="OnClick" />
 
     <TextView
-        android:id="@+id/VLSMBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/theme"
-        android:text="VLSM"
+        android:text="@string/vlsm"
         android:textAlignment="center"
         android:textSize="24.5dp"
         android:textColor="#FFFFFF"
@@ -59,7 +58,7 @@
         android:layout_height="40dp"
         app:layout_constraintVertical_bias="0"
         android:text=""
-        android:hint="X.X.X.X"
+        android:hint="@string/x_x_x_x"
         android:inputType="date"
         android:textSize="18dp"
         android:textColor="@color/black"
@@ -105,7 +104,7 @@
         android:layout_height="40dp"
         app:layout_constraintVertical_bias="0"
         android:text=""
-        android:hint="X.X.X.X | X | /X"
+        android:hint="@string/Mask_hint"
         android:inputType="datetime"
         android:textSize="18dp"
         android:textColor="@color/black"

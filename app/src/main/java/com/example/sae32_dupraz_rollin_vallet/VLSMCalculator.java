@@ -1,7 +1,5 @@
 package com.example.sae32_dupraz_rollin_vallet;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -158,15 +156,15 @@ public class VLSMCalculator extends IPCalculator {
         //Stock le résultat dans result
         String result = "";
         if (IPExceeded){
-            if (this.lang == "fr") {
+            if (this.lang.equals("fr")) {
                 result = "Erreur : Il n'y a pas assez d'adresses dans le bloc";
             }
-            if (this.lang == "en"){
+            if (this.lang.equals("en")){
                 result = "Error : There isn't enough addresses in this block";
             }
         }
         else {
-            if (this.lang == "fr") {
+            if (this.lang.equals("fr")) {
                 for (int i = 0; i < ArrayNetworkList.size(); i++) {
                     result += "Sous-réseau : " + (i + 1) + " (" + ArraySubnetList.get(i) + " adresses)\n";
                     result += "Adresse Réseau : " + ArrayNetworkList.get(i) + "/" + ArrayMaskList.get(i) + "\n";
@@ -175,7 +173,7 @@ public class VLSMCalculator extends IPCalculator {
                     result += "Dernière Adresse : " + LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
                 }
             }
-            if (this.lang == "en"){
+            if (this.lang.equals("en")){
                 for (int i = 0; i < ArrayNetworkList.size(); i++) {
                     result += "Subnet : " + (i + 1) + " (" + ArraySubnetList.get(i) + " addresses)\n";
                     result += "Network Address : " + ArrayNetworkList.get(i) + "/" + ArrayMaskList.get(i) + "\n";
