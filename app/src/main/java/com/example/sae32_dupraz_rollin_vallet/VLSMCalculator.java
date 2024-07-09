@@ -170,7 +170,7 @@ public class VLSMCalculator extends IPCalculator {
                     result += "Adresse Réseau : " + ArrayNetworkList.get(i) + "/" + ArrayMaskList.get(i) + "\n";
                     result += "Adresse Broadcast : " + BroadcastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
                     result += "Première Adresse : " + FirstAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
-                    result += "Dernière Adresse : " + LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
+                    result += "Dernière Adresse : " + LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n\n";
                 }
             }
             if (this.lang.equals("en")){
@@ -179,7 +179,7 @@ public class VLSMCalculator extends IPCalculator {
                     result += "Network Address : " + ArrayNetworkList.get(i) + "/" + ArrayMaskList.get(i) + "\n";
                     result += "Broadcast Address : " + BroadcastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
                     result += "First Address : " + FirstAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
-                    result += "Last Address : " + LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
+                    result += "Last Address : " + LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n\n";
                 }
             }
         }
