@@ -116,7 +116,7 @@ public class VLSM extends AppCompatActivity {
                         mask = mask.substring(0, mask.indexOf(ListMask.get(c).toString())) + mask.substring(mask.indexOf(ListMask.get(c).toString()) + 1, mask.length());
                     }
                 }
-                //Champ masque
+                //Champ SR
                 for (int c=0; c < ListSubnets.size(); c++) {
                     while (subnetlist.contains(ListSubnets.get(c).toString())) {
                         subnetlist = subnetlist.substring(0, subnetlist.indexOf(ListSubnets.get(c).toString())) + subnetlist.substring(subnetlist.indexOf(ListSubnets.get(c).toString()) + 1, subnetlist.length());
