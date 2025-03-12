@@ -13,12 +13,36 @@ public class IPCalculator {
     //Remet les maskes /X et X.X.X.X sous la forme X
     public String Getmask(String mask){
         if(mask.contains("/")){
-            mask = mask.substring(1,mask.length());
+            mask = mask.substring(1);
+
+            //check si la val du masque dépasse 32
+            if(Integer.parseInt(mask) > 32){
+                mask = "32";
+            }
         }
         if(mask.contains(".")){
             mask = AddressToBaseTwo(mask);
-            mask = String.valueOf(mask.indexOf("0"));
+
+            //Si le masque est un wildcard
+            if(Integer.parseInt(mask.substring(0,1)) == 0){
+                mask = String.valueOf(mask.indexOf("1"));
+            }
+	        else{
+                mask = String.valueOf(mask.indexOf("0"));
+            }
         }
+        else{
+            //check si la val du masque dépasse 32
+            if(Integer.parseInt(mask) > 32){
+                mask = "32";
+            }
+        }
+
+        //check si la val du masque dépasse 32
+        if(Integer.valueOf(mask) > 32){
+            mask = "32";
+        }
+
         return mask;
     }
 
@@ -121,6 +145,10 @@ public class IPCalculator {
         return String.valueOf((int) (Math.pow(2,(32-Integer.valueOf(this.mask)))-2));
     }
 
+    public String NumberOfAddressFromDesignatedMask(Integer mask){
+        return String.valueOf((int) (Math.pow(2,(32-mask))-2));
+    }
+
     //Convertis 32 bits en base 10 avec une notation décimale pointée
     private String toBaseTen(String addressBin){
 
@@ -193,5 +221,9 @@ public class IPCalculator {
         addressBin += "0";
 
         return toBaseTen(addressBin);
+    }
+
+    public String GetMaskValue(){
+        return this.mask;
     }
 }

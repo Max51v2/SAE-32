@@ -166,20 +166,22 @@ public class VLSMCalculator extends IPCalculator {
         else {
             if (this.lang.equals("fr")) {
                 for (int i = 0; i < ArrayNetworkList.size(); i++) {
-                    result += "Sous-réseau : " + (i + 1) + " (" + ArraySubnetList.get(i) + " adresses)\n";
+                    result += "Sous-réseau : " + (i + 1) + " [" + ArraySubnetList.get(i) + " Adresses]\n";
                     result += "Adresse Réseau : " + ArrayNetworkList.get(i) + "/" + ArrayMaskList.get(i) + "\n";
                     result += "Adresse Broadcast : " + BroadcastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
                     result += "Première Adresse : " + FirstAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
-                    result += "Dernière Adresse : " + LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n\n";
+                    result += "Dernière Adresse : " + LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
+                    result += "Adresses disponibles : " + NumberOfAddressFromDesignatedMask(ArrayMaskList.get(i)) + "\n\n";
                 }
             }
             if (this.lang.equals("en")){
                 for (int i = 0; i < ArrayNetworkList.size(); i++) {
-                    result += "Subnet : " + (i + 1) + " (" + ArraySubnetList.get(i) + " addresses)\n";
+                    result += "Subnet : " + (i + 1) + " [" + ArraySubnetList.get(i) + " Addresses]\n";
                     result += "Network Address : " + ArrayNetworkList.get(i) + "/" + ArrayMaskList.get(i) + "\n";
                     result += "Broadcast Address : " + BroadcastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
                     result += "First Address : " + FirstAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
-                    result += "Last Address : " + LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n\n";
+                    result += "Last Address : " + LastAddressAlt(ArrayNetworkList.get(i), String.valueOf(ArrayMaskList.get(i))) + "\n";
+                    result += "Available addresses : " + NumberOfAddressFromDesignatedMask(ArrayMaskList.get(i)) + "\n\n";
                 }
             }
         }

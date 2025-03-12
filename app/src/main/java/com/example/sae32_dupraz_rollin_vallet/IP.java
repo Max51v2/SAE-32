@@ -113,7 +113,7 @@ public class IP extends AppCompatActivity {
 
                 //On ne lance rien si un champ est vide
                 if (address.equals("") | mask.equals("")){
-
+                    //Rien
                 }
                 else {
                     IPBoxIP.setText("");
@@ -135,7 +135,7 @@ public class IP extends AppCompatActivity {
                             e.printStackTrace();
                             throw new RuntimeException(e);
                         }
-                        IPNetworkAddressBox.setText(ip1.NetworkAddress());
+                        IPNetworkAddressBox.setText(ip1.NetworkAddress()+"/"+ip1.GetMaskValue());
                         IPBroadcastAddressBox.setText(ip1.BroadcastAddress());
                         IPRangeBox.setText(ip1.FirstAddress() + " - " + ip1.LastAddress());
                         IPAvailableAddressBox.setText(ip1.NumberOfAddress());
